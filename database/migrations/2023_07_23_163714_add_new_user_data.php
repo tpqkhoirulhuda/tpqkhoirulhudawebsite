@@ -18,9 +18,9 @@ return new class extends Migration
             // $table->string('name');
             // $table->string('email')->unique();
             // $table->timestamp('email_verified_at')->nullable();
-            $table->text("alamat");
-            $table->string("noTelp");
-            $table->smallInteger('role');
+            $table->text("alamat")->nullable();
+            $table->string("noTelp")->nullable();
+            $table->smallInteger('role')->default(0);
             // $table->string('password');
             // $table->rememberToken();
             // $table->timestamps();
