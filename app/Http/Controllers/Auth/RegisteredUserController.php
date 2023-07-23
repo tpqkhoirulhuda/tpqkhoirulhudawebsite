@@ -41,11 +41,10 @@ class RegisteredUserController extends Controller
 
         
         if( preg_match('/^\w+@guru.kh.ac.id$/', $request->email)){
-             $role = 2;
+            $role = 2;
         }else{
             $role = 0;
         }
-       
 
         $user = User::create([
             'name' => $request->name,
