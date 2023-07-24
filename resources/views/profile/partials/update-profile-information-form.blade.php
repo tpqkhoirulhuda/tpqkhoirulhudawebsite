@@ -28,24 +28,32 @@
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
         </div>
-            <!-- @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <div>
-                    <p class="text-sm mt-2 text-gray-800 dark:text-gray-200">
-                        {{ __('Your email address is unverified.') }}
 
-                        <button form="send-verification" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-                            {{ __('Click here to re-send the verification email.') }}
-                        </button>
-                    </p>
+        <div>
+            <x-input-label for="gender" :value="__('Jenis Kelamin')" />
+            {{-- <x-text-input id="gender" name="gender" type="text" read-only class="mt-1 block w-full" :value="old('gender', $user->gender)" required autocomplete="gender" /> --}}
+            <div class="text-white mt-2 flex gap-2">
+                <span>Laki-laki </span><input type="radio" name="gender" class="radio radio-accent" checked required value="Laki-laki"/>
+                <span>Perempuan </span><input type="radio" name="gender" class="radio radio-accent" required value="Perempuan"/>
+            </div>
+            <x-input-error class="mt-2" :messages="$errors->get('gender')" />
+        </div>
 
-                    @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-green-600 dark:text-green-400">
-                            {{ __('A new verification link has been sent to your email address.') }}
-                        </p>
-                    @endif
-                </div>
-            @endif -->
+        <div>
+            <x-input-label for="datebirth" :value="__('Tempat, Tanggal Lahir')" />
+            <x-text-input id="placebirth" class="block mt-1 w-full" type="text" name="placebirth" :value="old('placebirth')" required autocomplete="place" placeholder='tempat lahir' />
+            <x-text-input id="datebirth" class="block mt-1 w-full" type="date" name="datebirth" :value="old('datebirth')" required autocomplete="date" placeholder='datebirth' />
+            <x-input-error :messages="$errors->get('datebirth')" class="mt-2"  />
+        </div>
      
+        @if($user->role == '0')
+        <div>
+            <x-input-label for="mother" :value="__('Nama Ibu')" />
+            <x-text-input id="mother" name="mother" type="text" class="mt-1 block w-full" :value="old('mother', $user->mother)" required autocomplete="mother" />
+            <x-input-error class="mt-2" :messages="$errors->get('mother')" />
+        </div>
+        @endif
+
         <div>
             <x-input-label for="alamat" :value="__('Alamat')" />
             <x-text-input id="alamat" name="alamat" type="text" class="mt-1 block w-full" :value="old('alamat', $user->alamat)" required autocomplete="address" />
