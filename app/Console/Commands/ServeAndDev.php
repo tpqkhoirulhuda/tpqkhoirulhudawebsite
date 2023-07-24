@@ -7,7 +7,7 @@ use Symfony\Component\Process\Process;
 
 class ServeAndDev extends Command
 {
-    protected $signature = 'start';
+    protected $signature = 'serve';
     protected $description = 'Run npm start';
 
     public function handle()
