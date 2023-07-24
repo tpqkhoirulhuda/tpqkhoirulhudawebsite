@@ -4,16 +4,19 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class RunCommand extends Command
+class Run extends Command
 {
     protected $signature = 'run';
     protected $description = 'Start the PHP development server';
 
     public function handle()
     {
-        $this->info('Laravel development server started: http://localhost:8000');
+        $host = 'localhost';
+        $port = 8000;
+
+        $this->line("Laravel development server started on http://{$host}:{$port}");
 
         // Start the PHP built-in development server
-        passthru('php -S localhost:8000 -t public');
+        passthru("php -S {$host}:{$port} -t public");
     }
 }
