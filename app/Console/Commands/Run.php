@@ -11,12 +11,14 @@ class Run extends Command
 
     public function handle()
     {
-        $host = 'localhost';
-        $port = 8000;
+        $url = env('APP_URL', 'localhost:8000');
 
-        $this->line("Laravel development server started on http://{$host}:{$port}");
+        // Remove "http://" from the URL if present
+        $url = str_replace(['http://', 'https://'], '', $url);
+
+        $this->line("Laravel development server started on http://{$url}");
 
         // Start the PHP built-in development server
-        passthru("php -S {$host}:{$port} -t public");
+        passthru("php -S {$url} -t public");
     }
 }
