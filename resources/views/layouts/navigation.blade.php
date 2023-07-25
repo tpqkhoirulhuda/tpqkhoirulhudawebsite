@@ -15,6 +15,17 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('dataguru')" :active="request()->routeIs('dataguru')">
+                        {{ __('Data Guru') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('hasilpenilaian')" :active="request()->routeIs('hasilpenilaian')">
+                        {{ __('Hasil Penilaian') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('penilaian')" :active="request()->routeIs('penilaian')">
+                        {{ __('Penilaian') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -69,6 +80,12 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('dataguru')" :active="request()->routeIs('dataguru')">
+                {{ __('Data Guru') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('hasilpenilaian')" :active="request()->routeIs('hasilpenilaian')">
+                {{ __('Hasil Penilaian') }}
             </x-responsive-nav-link>
         </div>
 
