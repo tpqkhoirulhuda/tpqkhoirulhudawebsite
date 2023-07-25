@@ -31,15 +31,18 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'alamat' => ['required', 'string'],
-            'noTelp' => ['required', 'string']
+            'noTelp' => ['required', 'string'],
+            'jenis_kelamin' => ['required', 'string'],
+            'tempat_lahir' => ['required', 'string'],
+            'tanggal_lahir'=> ['required', 'date']
         ]);
 
-        
         if( preg_match('/^\w+@guru.kh.ac.id$/', $request->email)){
             $role = 2;
         }else{
@@ -52,10 +55,11 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'alamat' => $request->alamat,
             'noTelp'=> $request->noTelp,
-            'role' => $role
+            'role' => $role,
+            'jenis_kelamin' => $request->{'jenis_kelamin'},
+            'tanggal_lahir' => $request->{'tanggal_lahir'},
+            'tempat_lahir' => $request->{'tempat_lahir'}
         ]);
-
-
 
         event(new Registered($user));
 

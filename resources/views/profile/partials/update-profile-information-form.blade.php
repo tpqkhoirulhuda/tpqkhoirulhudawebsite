@@ -30,20 +30,25 @@
         </div>
 
         <div>
-            <x-input-label for="gender" :value="__('Jenis Kelamin')" />
-            {{-- <x-text-input id="gender" name="gender" type="text" read-only class="mt-1 block w-full" :value="old('gender', $user->gender)" required autocomplete="gender" /> --}}
+            <x-input-label for="jenis kelamin" :value="__('Jenis Kelamin')" />
             <div class="text-white mt-2 flex gap-2">
-                <span>Laki-laki </span><input type="radio" name="gender" class="radio radio-accent" checked required value="Laki-laki"/>
-                <span>Perempuan </span><input type="radio" name="gender" class="radio radio-accent" required value="Perempuan"/>
+                @if($user->jenis_kelamin == "Laki-laki")
+                <span>Laki-laki </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" checked value="Laki-laki"/>
+                <span>Perempuan </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" value="Perempuan"/>
+                @else
+                 <span>Laki-laki </span><input type="radio" name="jenis_kelamin" class="radio radio-accent"  value="Laki-laki"/>
+                <span>Perempuan </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" checked value="Perempuan"/>
+                @endif
             </div>
-            <x-input-error class="mt-2" :messages="$errors->get('gender')" />
+            <x-input-error class="mt-2" :messages="$errors->get('jenis_kelamin')" />
         </div>
 
         <div>
             <x-input-label for="datebirth" :value="__('Tempat, Tanggal Lahir')" />
-            <x-text-input id="placebirth" class="block mt-1 w-full" type="text" name="placebirth" :value="old('placebirth')" required autocomplete="place" placeholder='tempat lahir' />
-            <x-text-input id="datebirth" class="block mt-1 w-full" type="date" name="datebirth" :value="old('datebirth')" required autocomplete="date" placeholder='datebirth' />
-            <x-input-error :messages="$errors->get('datebirth')" class="mt-2"  />
+            <x-text-input id="tempat lahir" class="block mt-1 w-full" type="text" name="tempat_lahir" :value="old('tempat_lahir',  $user->tempat_lahir)" required autocomplete="place" placeholder='tempat lahir' />
+            <x-text-input id="tanggal lahir" class="block mt-1 w-full" type="date" name="tanggal_lahir" :value="old('tanggal_lahir', $user->tanggal_lahir)" required autocomplete="date" placeholder='tanggal lahir' />
+            <x-input-error :messages="$errors->get('tanggal_lahir')" class="mt-2"  />
+            <x-input-error :messages="$errors->get('tempat_lahir')" class="mt-2"  />
         </div>
      
         @if($user->role == '0')
@@ -81,3 +86,5 @@
         </div>
     </form>
 </section>
+
+

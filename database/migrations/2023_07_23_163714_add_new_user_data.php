@@ -21,6 +21,10 @@ return new class extends Migration
             $table->text("alamat")->nullable();
             $table->string("noTelp")->nullable();
             $table->smallInteger('role')->default(0);
+            $table->string('jenis_kelamin')->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->string('tempat_lahir')->nullable();
+            $table->string('ibu')->nullable();
             // $table->string('password');
             // $table->rememberToken();
             // $table->timestamps();

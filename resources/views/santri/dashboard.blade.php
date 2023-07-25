@@ -40,7 +40,6 @@
                 <div class="stat-value">1,200</div>
                 <div class="stat-desc">↘︎ 90 (14%)</div>
               </div>
-              
             </div>
           </div>
         </div>

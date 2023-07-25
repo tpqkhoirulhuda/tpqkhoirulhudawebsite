@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ListUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +23,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dataguru', function () {
-    return view('dataguru');
-})->middleware(['auth', 'verified'])->name('dataguru');
+Route::get('/dataguru',[ListUserController::class, 'ListGuru'])->middleware(['auth'])->name('dataguru');
 
 Route::get('/hasilpenilaian', function () {
     return view('hasilpenilaian');

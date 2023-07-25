@@ -20,6 +20,9 @@ class ProfileUpdateRequest extends FormRequest
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
             'alamat' => 'required|string|max:255',
             'noTelp' => 'required|string|max:20',
+            'jenis_kelamin' => 'required|string',
+            'tanggal_lahir' => 'required|date',
+            'tempat_lahir' => 'required|string'
         ];
     }
 }

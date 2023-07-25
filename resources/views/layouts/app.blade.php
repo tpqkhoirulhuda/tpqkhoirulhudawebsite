@@ -36,4 +36,6 @@
             </main>
         </div>
     </body>
+
+    @yield('custom-js')
 </html>

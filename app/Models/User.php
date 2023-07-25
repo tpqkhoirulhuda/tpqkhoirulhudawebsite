@@ -23,7 +23,11 @@ class User extends Authenticatable
         'password',
         'alamat',
         'noTelp',
-        'role'
+        'role',
+        'jenis_kelamin',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'ibu'
     ];
 
     /**
