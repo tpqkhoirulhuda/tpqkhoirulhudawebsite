@@ -97,7 +97,7 @@
 
 
                         @if(Auth::user()->ibu == null || Auth::user()->kelas_id == null)
-                            <div x-data="{ showModal: true }" @keydown.escape="showModal = false" class="fixed inset-0 flex items-center justify-center">
+                            {{-- <div x-data="{ showModal: true }" @keydown.escape="showModal = false" class="fixed inset-0 flex items-center justify-center">
                                 <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
                                     <div @click.away="showModal = false" class="modal-container bg-white dark:bg-gray-800 w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
                                     <div class="modal-content py-4 text-left px-6">
@@ -129,7 +129,7 @@
                                         </form>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         @endif
                     @endif
                     </div>

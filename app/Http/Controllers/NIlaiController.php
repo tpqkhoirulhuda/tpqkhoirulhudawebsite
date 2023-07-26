@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Http\Request;
 use App\Models\Nilai;
 
 class NilaiController extends BaseController
@@ -16,7 +17,7 @@ class NilaiController extends BaseController
         return view('kriteriapenilaian',['nilai' => $nilai]);
     }
 
-    public function KriteriPenilaian($request){
+    public function KriteriaPenilaian(Request $request){
         $nilai = Nilai::where('id', 1)->first();
 
         $request->validate([
@@ -27,6 +28,7 @@ class NilaiController extends BaseController
         ]);
 
         $nilai->fill($request);
+        $nilai->save();
         return redirect()->route('kriteriapenilaian');
     }
 

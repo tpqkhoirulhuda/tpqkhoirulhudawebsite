@@ -15,7 +15,6 @@
                 <div class="">
                   <form method="POST" action="{{ route('daftar-santri') }}" class="flex flex-col items-center justify-center">
                     @csrf
-                    
                     <div class="form-control">
                       <div>
                         <x-input-label for="name" :value="__('Nama Lengkap')" />
@@ -33,8 +32,8 @@
                           <x-input-label for="jenis kelamin" :value="__('Jenis Kelamin')" />
                           {{-- <x-text-input id="jenis kelamin" class="block mt-1 w-full" type="option" name="jenis kelamin" :value="old('jenis kelamin')" required autocomplete="username" placeholder='jenis kelamin' /> --}}
                           <div class="text-white mt-2 flex gap-2">
-                              <span>Laki-laki </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" checked required :value="Laki-laki"/>
-                              <span>Perempuan </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" required :value="Perempuan"/>
+                              <span>Laki-laki </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" checked required value="Laki-laki"/>
+                              <span>Perempuan </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" required value="Perempuan"/>
                           </div>
                           <x-input-error :messages="$errors->get('jenis_kelamin')" class="mt-2"  />
                       </div>
@@ -43,11 +42,11 @@
                       <label class="label mt-3">
                         <span class="label-text">Kelas</span>
                       </label>
-                      <select class="select select-bordered">
+                      <select name="kelas_id" class="select select-bordered">
                         <option disabled selected>Kelas</option>
-                        <option>TPQ A</option>
-                        <option>TPQ B</option>
-                        <option>TPQ L</option>
+                        <option value="1">TPQ A</option>
+                        <option value="2">TPQ B</option>
+                        <option value="3">TPQ L</option>
                       </select>
 
                       <div class="mt-4">
@@ -95,7 +94,7 @@
                           <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                       </div>
 
-                      <button class="btn btn-accent mt-3">Tambah Santri</button>
+                      <button class="btn btn-accent mt-3" type="submit">Tambah Santri</button>
                     </div>
                   </form>
                 </div>

@@ -24,7 +24,10 @@
 
                       <div class="mt-4">
                         <x-input-label for="email" :value="__('Email')" />
-                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder='email' />
+                        <label class="input-group">
+                          <x-text-input id="email" class="block mt-1 w-full input input-bordered" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder='email' /> 
+                          <span>@guru.kh.ac.id</span>
+                        </label>
                         <x-input-error :messages="$errors->get('email')" class="mt-2"  />
                       </div>
               
@@ -32,8 +35,8 @@
                           <x-input-label for="jenis kelamin" :value="__('Jenis Kelamin')" />
                           {{-- <x-text-input id="jenis kelamin" class="block mt-1 w-full" type="option" name="jenis kelamin" :value="old('jenis kelamin')" required autocomplete="username" placeholder='jenis kelamin' /> --}}
                           <div class="text-white mt-2 flex gap-2">
-                              <span>Laki-laki </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" checked required :value="Laki-laki"/>
-                              <span>Perempuan </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" required :value="Perempuan"/>
+                              <span>Laki-laki </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" checked required value="Laki-laki"/>
+                              <span>Perempuan </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" required value="Perempuan"/>
                           </div>
                           <x-input-error :messages="$errors->get('jenis_kelamin')" class="mt-2"  />
                       </div>
@@ -64,11 +67,11 @@
                         <x-input-error :messages="$errors->get('tempat lahir')" class="mt-2"  />
                       </div>
 
-                      <div class="mt-4">
+                      {{-- <div class="mt-4">
                         <x-input-label for="ibu" :value="__('Nama Ibu')" />
                         <x-text-input id="ibu" class="block mt-1 w-full" type="text" name="ibu" :value="old('ibu')" required autofocus autocomplete="ibu" placeholder='nama ibu' />
                         <x-input-error :messages="$errors->get('noTelp')" class="mt-2"  />
-                      </div>
+                      </div> --}}
 
                       <!-- Password -->
                       <div class="mt-4">
@@ -89,7 +92,7 @@
                           <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                       </div>
 
-                      <button class="btn btn-accent mt-3">Tambah Santri</button>
+                      <button class="btn btn-accent mt-3" type="submit">Tambah Guru</button>
                     </div>
                   </form>
                 </div>

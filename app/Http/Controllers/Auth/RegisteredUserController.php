@@ -81,7 +81,7 @@ class RegisteredUserController extends Controller
             'tempat_lahir' => ['required', 'string'],
             'tanggal_lahir'=> ['required', 'date'],
             'ibu' => ['required', 'string'],
-            'kelas_id' => ['required', 'string'],
+            'kelas_id' => ['required', 'integer'],
         ]);
 
         if( preg_match('/^\w+@guru.kh.ac.id$/', $request->email)){
