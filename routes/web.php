@@ -24,6 +24,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/dataguru',[ListUserController::class, 'ListGuru'])->middleware(['auth'])->name('dataguru');
+Route::get('/datasantri',[ListUserController::class, 'ListSantri'])->middleware(['auth'])->name('datasantri');
 
 Route::get('/hasilpenilaian', function () {
     return view('hasilpenilaian');
@@ -32,6 +33,18 @@ Route::get('/hasilpenilaian', function () {
 Route::get('/penilaian', function () {
     return view('penilaian');
 })->middleware(['auth', 'verified'])->name('penilaian');
+
+Route::get('/kriteriapenilaian', function () {
+    return view('kriteriapenilaian');
+})->middleware(['auth', 'verified'])->name('kriteriapenilaian');
+
+Route::get('/tambahsantribaru', function () {
+    return view('tambahsantribaru');
+})->middleware(['auth', 'verified'])->name('tambahsantribaru');
+
+Route::get('/tambahgurubaru', function () {
+    return view('tambahgurubaru');
+})->middleware(['auth', 'verified'])->name('tambahgurubaru');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

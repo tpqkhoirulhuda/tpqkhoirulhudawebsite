@@ -15,8 +15,13 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
                     <x-nav-link :href="route('dataguru')" :active="request()->routeIs('dataguru')">
                         {{ __('Data Guru') }}
+                    </x-nav-link>
+                    
+                    <x-nav-link :href="route('datasantri')" :active="request()->routeIs('datasantri')">
+                        {{ __('Data Santri') }}
                     </x-nav-link>
 
                     <x-nav-link :href="route('hasilpenilaian')" :active="request()->routeIs('hasilpenilaian')">
@@ -25,6 +30,18 @@
 
                     <x-nav-link :href="route('penilaian')" :active="request()->routeIs('penilaian')">
                         {{ __('Penilaian') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('kriteriapenilaian')" :active="request()->routeIs('kriteriapenilaian')">
+                        {{ __('Kriteria Penilaian') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('tambahsantribaru')" :active="request()->routeIs('tambahsantribaru')">
+                        {{ __('Tambah Santri') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('tambahgurubaru')" :active="request()->routeIs('tambahgurubaru')">
+                        {{ __('Tambah Guru') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -84,8 +101,23 @@
             <x-responsive-nav-link :href="route('dataguru')" :active="request()->routeIs('dataguru')">
                 {{ __('Data Guru') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('datasantri')" :active="request()->routeIs('datasantri')">
+                {{ __('Data Santri') }}
+            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('hasilpenilaian')" :active="request()->routeIs('hasilpenilaian')">
                 {{ __('Hasil Penilaian') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('penilaian')" :active="request()->routeIs('penilaian')">
+                {{ __('Penilaian') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('kriteriapenilaian')" :active="request()->routeIs('kriteriapenilaian')">
+                {{ __('Kriteria Penilaian') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('tambahsantribaru')" :active="request()->routeIs('tambahsantribaru')">
+                {{ __('Tambah Santri') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('tambahgurubaru')" :active="request()->routeIs('tambahgurubaru')">
+                {{ __('Tambah Guru') }}
             </x-responsive-nav-link>
         </div>
 

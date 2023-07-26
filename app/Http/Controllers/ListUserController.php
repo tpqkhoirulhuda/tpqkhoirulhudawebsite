@@ -13,13 +13,12 @@ class ListUserController extends BaseController
     public function ListSantri(){
         $user = User::where('role', 0)->get();
 
-        return view('santri.List',['santri'=>$user]);
+        // return view('santri.List',['santri'=>$user]);
+        return view('datasantri',['santri'=>$user]);
     }
 
     public function ListGuru(){
         $user = User::where('role', 2)->get();
-
-
 
         return view('dataguru',['guru' => $user]);
     }
