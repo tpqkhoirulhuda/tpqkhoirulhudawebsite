@@ -27,7 +27,8 @@ class User extends Authenticatable
         'jenis_kelamin',
         'tempat_lahir',
         'tanggal_lahir',
-        'ibu'
+        'ibu',
+        'kelas_id'
     ];
 
     /**

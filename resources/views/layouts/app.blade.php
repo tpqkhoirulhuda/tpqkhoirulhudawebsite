@@ -35,6 +35,7 @@
                 {{ $slot }}
             </main>
         </div>
+                    
     </body>
 
     @yield('custom-js')

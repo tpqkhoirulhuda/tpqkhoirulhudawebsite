@@ -20,19 +20,19 @@
                       <label class="label">
                         <span class="label-text">Absen</span>
                       </label>
-                      <input type="number" placeholder="absen" class="input input-bordered w-full max-w-xs" />
+                      <input type="number" placeholder="absen" :value="old('absen', {{$nilai->absen}})" class="input input-bordered w-full max-w-xs" />
                       <label class="label">
                         <span class="label-text">Tugas</span>
                       </label>
-                      <input type="number" placeholder="tugas" class="input input-bordered w-full max-w-xs" />
+                      <input type="number" placeholder="tugas" :value="old('tugas', $nilai->tugas)" class="input input-bordered w-full max-w-xs" />
                       <label class="label">
                         <span class="label-text">Bacaan</span>
                       </label>
-                      <input type="number" placeholder="bacaan" class="input input-bordered w-full max-w-xs" />
+                      <input type="number" placeholder="bacaan" :value="old('bacaan', $nilai->bacaan)" class="input input-bordered w-full max-w-xs" />
                       <label class="label">
                         <span class="label-text">Hafalan</span>
                       </label>
-                      <input type="number" placeholder="hafalan" class="input input-bordered w-full max-w-xs" />
+                      <input type="number" placeholder="hafalan" :value="old('hafalan', $nilai->hafalan)" class="input input-bordered w-full max-w-xs" />
                       <button class="btn btn-accent mt-3">Save Kriteria Nilai</button>
                     </div>
                   </form>

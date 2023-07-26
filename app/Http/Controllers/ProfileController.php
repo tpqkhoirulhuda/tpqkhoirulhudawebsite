@@ -3,16 +3,47 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Requests\VerifikasiSantriRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Kelas;
 
 class ProfileController extends Controller
 {
     public function show(Request $request): View{
         return '';
+    }
+
+    public function verifikasiSantri(Request $request)
+    {
+
+            $request->validate([
+                'kelas' => 'required|numeric',
+                'ibu' => 'required|string|max:255',
+            ]);
+
+            $user = Auth::user();
+
+            $user->fill([
+                'kelas_id' => $request->kelas,
+                'ibu' => $request->ibu,
+            ]);
+
+            $user->save();
+
+            return redirect()->route('dashboard')->with('success', 'User data updated successfully!');
+
+    }
+
+
+    public function dashboard():View{
+        $kelas = Kelas::all();
+        return view('dashboard', [
+            'kelas' => $kelas,
+        ]);
     }
     /**
      * Display the user's profile form.

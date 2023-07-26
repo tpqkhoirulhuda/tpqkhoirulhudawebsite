@@ -1,6 +1,3 @@
-
-
-
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -16,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('kelas', function (Blueprint $table) {
+         Schema::create('buku', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_kelas');
+            $table->string('jilid_buku')->nullable();
+            $table->string('nama_buku')->nullable();
             $table->timestamps();
-        });
+         });
     }
 
     /**
@@ -30,7 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kelas');
+        Schema::dropIfExists('buku');
     }
 };
-

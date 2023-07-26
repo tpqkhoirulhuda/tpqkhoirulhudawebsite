@@ -31,12 +31,16 @@
         <!-- Jenis Kelamin -->
         <div class="mt-4">
             <x-input-label for="jenis kelamin" :value="__('Jenis Kelamin')" />
-            {{-- <x-text-input id="jenis kelamin" class="block mt-1 w-full" type="option" name="jenis kelamin" :value="old('jenis kelamin')" required autocomplete="username" placeholder='jenis kelamin' /> --}}
             <div class="text-white mt-2 flex gap-2">
-                <span>Laki-laki </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" checked required :value="Laki-laki"/>
-                <span>Perempuan </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" required :value="Perempuan"/>
+                @if(old('jenis_kelamin') == "Laki-laki")
+                <span>Laki-laki </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" checked value="Laki-laki"/>
+                <span>Perempuan </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" value="Perempuan"/>
+                @else
+                 <span>Laki-laki </span><input type="radio" name="jenis_kelamin" class="radio radio-accent"  value="Laki-laki"/>
+                <span>Perempuan </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" checked value="Perempuan"/>
+                @endif
             </div>
-            <x-input-error :messages="$errors->get('jenis_kelamin')" class="mt-2"  />
+            <x-input-error class="mt-2" :messages="$errors->get('jenis_kelamin')" />
         </div>
 
         <!-- Tempat Tanggal lahir -->

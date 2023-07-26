@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ListUserController;
+use App\Http\Controllers\NilaiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,9 +20,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [ProfileController::class, 'dashboard'] )->middleware(['auth'])->name('dashboard');
 
 Route::get('/dataguru',[ListUserController::class, 'ListGuru'])->middleware(['auth'])->name('dataguru');
 Route::get('/datasantri',[ListUserController::class, 'ListSantri'])->middleware(['auth'])->name('datasantri');
@@ -32,11 +31,9 @@ Route::get('/hasilpenilaian', function () {
 
 Route::get('/penilaian', function () {
     return view('penilaian');
-})->middleware(['auth', 'verified'])->name('penilaian');
+})->middleware(['auth', 'isGuru'])->name('penilaian');
 
-Route::get('/kriteriapenilaian', function () {
-    return view('kriteriapenilaian');
-})->middleware(['auth', 'verified'])->name('kriteriapenilaian');
+Route::get('/kriteriapenilaian', [NilaiController::class, 'view'])->middleware(['auth'])->name('kriteriapenilaian');
 
 Route::get('/tambahsantribaru', function () {
     return view('tambahsantribaru');
@@ -46,7 +43,12 @@ Route::get('/tambahgurubaru', function () {
     return view('tambahgurubaru');
 })->middleware(['auth', 'verified'])->name('tambahgurubaru');
 
-Route::middleware('auth')->group(function () {
+Route::post('/verifikasi-santri', [ProfileController::class, 'verifikasiSantri'])->middleware(['auth'])->name('verifikasi-santri');
+Route::post('/post/daftar-guru', [RegisteredUserController::class, 'storeGuruByAdmin'])->middleware(['auth'])->name('daftar-guru');
+Route::post('/post/daftar-santri', [RegisteredUserController::class, 'storeSantriByAdmin'])->middleware(['auth'])->name('daftar-santri');
+Route::post('/post/kriteria-penilaian', [NilaiController::class, 'KriteriaPenilaian'])->middleware(['auth'])->name("kriteria-penilaian");
+
+Route::middleware('auth', 'santriVerified')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

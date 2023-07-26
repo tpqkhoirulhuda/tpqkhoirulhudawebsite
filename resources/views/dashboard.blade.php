@@ -24,10 +24,22 @@
                         <div class="stat-value text-2xl text-secondary">{{ Auth::user()->noTelp }}</div>
                     </div>
                     
+                </div>
+                <div class="flex flex-col justify-center">
+                    <div class="stats shadow m-4">
+
                     <div class="stat place-items-center">
                         <div class="stat-title">Email</div>
                         <div class="stat-value text-lg">{{ Auth::user()->email }}</div>
                     </div>
+
+                    @if(Auth::user()->role === 0) 
+                     <div class="stat place-items-center">
+                        <div class="stat-title">Kelas</div>
+                        <div class="stat-value text-lg">{{ Auth::user()->kelas_id }}</div>
+                    </div>
+                    @endif
+                    
                 </div>
                 <div class="flex flex-col justify-center">
                     <div class="stats shadow m-4">
@@ -42,20 +54,28 @@
                         <div class="stat-value text-2xl text-secondary">{{ Auth::user()->tempat_lahir }}, {{ Auth::user()->tanggal_lahir }}</div>
                     </div>
                     
+                    
+                    
+                    
+                </div>
+
+                <div class="flex flex-col justify-center">
+                    <div class="stats shadow m-4">
                     <div class="stat place-items-center">
                         <div class="stat-title">No Telp</div>
                         <div class="stat-value text-lg">{{ Auth::user()->noTelp }}</div>
                     </div>
-                </div>
-                <div class="flex flex-col justify-center">
-                    <div class="stats shadow m-4">
 
                     <div class="stat place-items-center">
                         <div class="stat-title">Alamat</div>
                         <div class="stat-value text-2xl">{{ Auth::user()->alamat}}</div>
                     </div>
-                    
-                    <div class="stat place-items-center">
+
+                    </div>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <div class="stats shadow m-4">
+                        <div class="stat place-items-center">
                         <div class="stat-title">Status</div>
                         <div class="stat-value text-2xl text-secondary">
                             @if(Auth::user()->role === 0)
@@ -68,32 +88,40 @@
                         </div>
                     </div>
 
-                    @if(Auth::user()->role === 0)   
-                        @if(Auth::user()->ibu == null && Auth::user()->kelas == null)
-                            {{-- <div x-data="{ showModal: true }" @keydown.escape="showModal = false" class="fixed inset-0 flex items-center justify-center">
+                   @if(Auth::user()->role === 0)   
+                        <div class="stat place-items-center">
+                            <div class="stat-title">Nama Ibu</div>
+                            <div class="stat-value text-2xl">{{ Auth::user()->ibu}}</div>
+                        </div>
+                        
+
+
+                        @if(Auth::user()->ibu == null || Auth::user()->kelas_id == null)
+                            <div x-data="{ showModal: true }" @keydown.escape="showModal = false" class="fixed inset-0 flex items-center justify-center">
                                 <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
                                     <div @click.away="showModal = false" class="modal-container bg-white dark:bg-gray-800 w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
                                     <div class="modal-content py-4 text-left px-6">
                                         <h3 class="font-bold text-lg">Halo, {{ Auth::user()->name }}</h3>
                                         <p class="py-4">Tolong masukkan Kelas dan Nama Ibu:</p>
-                                        <form @submit.prevent="showModal = false" method="post" class="modal-box">
+                                        <form method="POST" class="modal-box" action="{{ route('verifikasi-santri') }}">
                                             @csrf
+                                            @method('post')
                                             <div class="form-control">
                                                 <label class="label">
                                                     <span class="label-text">Kelas</span>
                                                 </label>
-                                                <select class="select select-bordered" required>
+                                                <select name="kelas" class="select select-bordered" required>
                                                     <option disabled selected>Kelas</option>
-                                                    <option>TPQ A</option>
-                                                    <option>TPQ B</option>
-                                                    <option>TPQ L</option>
+                                                    @foreach($kelas as $kl)
+                                                        <option value="{{$kl->id}}">{{$kl->nama_kelas}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-control">
                                                 <label class="label">
                                                     <span class="label-text">Nama Ibu</span>
                                                 </label>
-                                                <input type="text" placeholder="Type here" name="nama ibu" class="input input-bordered w-full" required />
+                                                <input type="text" placeholder="Type here" name="ibu" class="input input-bordered w-full" required />
                                             </div>
                                             <div class="modal-action mt-4">
                                                 <button type="submit" class="btn btn-info btn-outline">Submit</button>
@@ -101,15 +129,10 @@
                                         </form>
                                     </div>
                                 </div>
-                            </div> --}}
+                            </div>
                         @endif
-
-                        <div class="stat place-items-center">
-                            <div class="stat-title">Nama Ibu</div>
-                            <div class="stat-value text-2xl">{{ Auth::user()->ibu}}</div>
-                        </div>
-
                     @endif
+                    </div>
                 </div>
             </div>
         </div>

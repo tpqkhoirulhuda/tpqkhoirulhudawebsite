@@ -40,7 +40,7 @@ class RegisteredUserController extends Controller
             'noTelp' => ['required', 'string'],
             'jenis_kelamin' => ['required', 'string'],
             'tempat_lahir' => ['required', 'string'],
-            'tanggal_lahir'=> ['required', 'date']
+            'tanggal_lahir'=> ['required', 'date'],
         ]);
 
         if( preg_match('/^\w+@guru.kh.ac.id$/', $request->email)){
@@ -66,5 +66,85 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function storeSantriByAdmin(Request $request): RedirectResponse
+    {
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'alamat' => ['required', 'string'],
+            'noTelp' => ['required', 'string'],
+            'jenis_kelamin' => ['required', 'string'],
+            'tempat_lahir' => ['required', 'string'],
+            'tanggal_lahir'=> ['required', 'date'],
+            'ibu' => ['required', 'string'],
+            'kelas_id' => ['required', 'string'],
+        ]);
+
+        if( preg_match('/^\w+@guru.kh.ac.id$/', $request->email)){
+            $role = 2;
+        }else{
+            $role = 0;
+        }
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'alamat' => $request->alamat,
+            'noTelp'=> $request->noTelp,
+            'role' => $role,
+            'jenis_kelamin' => $request->{'jenis_kelamin'},
+            'tanggal_lahir' => $request->{'tanggal_lahir'},
+            'tempat_lahir' => $request->{'tempat_lahir'},
+            'ibu' => $request->ibu,
+            'kelas_id' => $request->kelas_id
+        ]);
+
+        event(new Registered($user));
+
+        return redirect('tambahsantribaru');
+    }
+
+     public function storeGuruByAdmin(Request $request): RedirectResponse
+    {
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'alamat' => ['required', 'string'],
+            'noTelp' => ['required', 'string'],
+            'jenis_kelamin' => ['required', 'string'],
+            'tempat_lahir' => ['required', 'string'],
+            'tanggal_lahir'=> ['required', 'date'],
+        ]);
+
+        if( preg_match('/^\w+@guru.kh.ac.id$/', $request->email)){
+            $role = 2;
+        }else{
+            $role = 0;
+        }
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'alamat' => $request->alamat,
+            'noTelp'=> $request->noTelp,
+            'role' => $role,
+            'jenis_kelamin' => $request->{'jenis_kelamin'},
+            'tanggal_lahir' => $request->{'tanggal_lahir'},
+            'tempat_lahir' => $request->{'tempat_lahir'},
+            'ibu' => null,
+            'kelas_id' => null
+        ]);
+
+        event(new Registered($user));
+
+        return redirect('tambahgurubaru');
     }
 }

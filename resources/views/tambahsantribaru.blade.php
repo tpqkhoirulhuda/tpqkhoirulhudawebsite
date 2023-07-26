@@ -13,8 +13,9 @@
               </div>
               <div class="flex flex-col justify-center p-5">
                 <div class="">
-                  <form action="" class="flex flex-col items-center justify-center">
+                  <form method="POST" action="{{ route('daftar-santri') }}" class="flex flex-col items-center justify-center">
                     @csrf
+                    
                     <div class="form-control">
                       <div>
                         <x-input-label for="name" :value="__('Nama Lengkap')" />
