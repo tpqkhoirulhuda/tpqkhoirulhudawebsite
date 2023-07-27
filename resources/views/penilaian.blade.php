@@ -28,13 +28,12 @@
                       <label class="label">
                         <span class="label-text">Nama</span>
                       </label>
-                      {{-- <select class="select select-bordered" id="searchUser" onchange="searchFunction()">
-                        <option disabled selected>Nama</option>
-                        @foreach($user as $st)
-                          <option value="{{$st->id}}">{{$st->name}}</option>
-                        @endforeach
-                      </select> --}}
-                      <input id="searchUser" type="search" placeholder="nama" class="input input-bordered w-full max-w-xs" />
+                      <div class="relative">
+                        <input id="searchUser" onchange="searchFunction()" placeholder="nama" class="input input-bordered w-full max-w-xs" />
+                        <div id="dropDown" class="flex flex-col absolute hidden bg-[#1d232a] rounded border border-zinc-700 w-full p-2">
+                        </div>
+                      </div>
+                      
                       <label class="label">
                         <span class="label-text">Jenis Kelamin</span>
                       </label>
@@ -84,18 +83,31 @@
   @section('custom-js')
   <script>
     const searchUser = document.querySelector('#searchUser');
+    const dropDown = document.querySelector('#dropDown');
+    // const dropItem = document.querySelectorAll(".dropItem");
     const santri = @json($user);
 
-    const getSantri = (filteredSantri) => {
-        searchUser.innerHTML = filteredSantri.map((e) => {
-            return `
-            <option value="${e.id}">${e.name}</option>
-            `;
-        }).join('');
-    };
+    // dropItem.forEach((e)=>{
+    //   e.addEventListener('click', function (event) {
+    //     dropDown.classList.add("hidden");
+    //     searchUser.value = e.textContent;
+    //   });
+    // })
 
-    // Initial display of all santri
-    getSantri(santri);
+    
+    const setInput = (value) =>{
+      dropDown.classList.add("hidden");
+      searchUser.value = value;
+    }
+
+    const getSantri = (filteredSantri) => {
+      dropDown.classList.remove("hidden");
+      dropDown.innerHTML = filteredSantri.map((e) => {
+        return `<div onclick="setInput('${e.name}')" class="dropItem cursor-pointer w-full">
+          ${e.name}
+        </div>`
+      }).join('');
+    };
 
     const searchFunction = () => {
         const searchValue = document.querySelector("#searchUser").value.toLowerCase();
