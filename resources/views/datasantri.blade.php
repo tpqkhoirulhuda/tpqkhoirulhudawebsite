@@ -32,6 +32,7 @@
   <script>
     const listBox = document.querySelector('.box-list');
     const santri = @json($santri);
+    const kelas = @json($kelas);
 
     const getSantri = (filteredSantri) => {
         listBox.innerHTML = filteredSantri.map((e) => {
@@ -42,21 +43,21 @@
                 </div>
 
                 <div class="collapse-content"> 
-                    <p>Kelas: ${e.kelas_id}</p>
+                    <p>Kelas: ${e.kelas_id==null ? "Belum ada kelas":kelas[e.kelas_id].nama_kelas}</p>
                     <p>Jenis Kelamin: ${e.jenis_kelamin}</p>
                     <p>Email: ${e.email}</p>
                     <p>No Telp: ${e.noTelp}</p>
                     <p>Alamat: ${e.alamat}</p>
                     <p>Tempat, Tanggal Lahir: ${e.tempat_lahir}, ${e.tanggal_lahir}</p>
-                    <p>Nama Ibu: ${e.ibu}</p>
+                    <p>Nama Ibu: ${e.ibu==null? "Belum ada Nama Ibu":e.ibu}</p>
                     <!-- BUTTON FOR OPEN MODAL -->
                     <div class="mt-2 space-x-2">
-                        <label for="edit" class="btn btn-success btn-outline">Edit</label>
-                        <label for="delete" class="btn btn-error btn-outline">Delete</label>
+                        <label for="edit ${e.name}" class="btn btn-success btn-outline">Edit</label>
+                        <label for="delete ${e.name}" class="btn btn-error btn-outline">Delete</label>
                     </div>
 
                     <!-- EDIT MODAL -->
-                    <input type="checkbox" id="edit" class="modal-toggle" />
+                    <input type="checkbox" id="edit ${e.name}" class="modal-toggle" />
                     <div class="modal">
                         <div class="modal-box">
                             <div class="flex flex-col justify-center items-center p-4">
@@ -70,10 +71,17 @@
                                         <span class="label-text">Kelas</span>
                                     </label>
                                     <input name="kelas" type="text" value="${e.kelas_id}" class="input input-bordered w-full max-w-xs" />
-                                    <label class="label">
-                                        <span class="label-text">Jenis Kelamin</span>
-                                    </label>
-                                    <input name="nama" type="text" value="${e.jenis_kelamin}" class="input input-bordered w-full max-w-xs" />
+                                    <div class="mt-4">
+
+                                    <x-input-label for="jenis kelamin" :value="__('Jenis Kelamin')" />
+                                    {{-- <x-text-input id="jenis kelamin" class="block mt-1 w-full" type="option" name="jenis kelamin" :value="old('jenis kelamin')" required autocomplete="username" placeholder='jenis kelamin' /> --}}
+                                    <div class="text-white mt-2 flex gap-2">
+                                        <span>Laki-laki </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" checked required value="Laki-laki"/>
+                                        <span>Perempuan </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" required value="Perempuan"/>
+                                    </div>
+                                        <x-input-error :messages="$errors->get('jenis_kelamin')" class="mt-2"  />
+                                    </div>    
+
                                     <label class="label">
                                         <span class="label-text">Email</span>
                                     </label>
@@ -99,22 +107,22 @@
                             </div>
                             
                             <div class="modal-action">
-                                <label for="edit" class="btn btn-accent btn-outline">Save</label>
-                                <label for="edit" class="btn btn-info btn-outline">Cancel</label>
+                                <label for="edit ${e.name}" class="btn btn-accent btn-outline">Save</label>
+                                <label for="edit ${e.name}" class="btn btn-info btn-outline">Cancel</label>
                             </div>
                         </div>
                     </div>
 
                     <!-- DELETE MODAL -->
-                    <input type="checkbox" id="delete" class="modal-toggle" />
+                    <input type="checkbox" id="delete ${e.name}" class="modal-toggle" />
                     <div class="modal">
                         <div class="modal-box">
                             <div class="flex flex-col justify-center items-center p-4">
                                 <h3 class="font-bold text-lg">Delete Santri</h3>
                                 <p class="py-4">Apakah kamu yakin mau menghapus data ${e.name}</p>
                                 <div class="modal-action">
-                                    <label for="delete" class="btn btn-error btn-outline">Delete</label>
-                                    <label for="delete" class="btn btn-info btn-outline">Cancel</label>
+                                    <label for="delete ${e.name}" class="btn btn-error btn-outline">Delete</label>
+                                    <label for="delete ${e.name}" class="btn btn-info btn-outline">Cancel</label>
                                 </div>
                             </div>
                         </div>

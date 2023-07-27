@@ -66,4 +66,12 @@ class NilaiController extends BaseController
         return view('penilaian', ['kelas'=>$kelas, 'user'=>$user, 'buku'=> $buku]);
     }
 
+    public function PenilaianGuru(){
+        $kelas = Kelas::all();
+        $user = User::where('role', 0)->get();
+        $buku = Buku::all();
+
+        return view('hasilpenilaianguru', ['kelas'=>$kelas, 'user'=>$user, 'buku'=> $buku]);
+    }
+
 }

@@ -21,7 +21,7 @@
                     
                     <div class="stat place-items-center">
                         <div class="stat-title">Kelas</div>
-                        <div class="stat-value text-2xl text-secondary">{{ Auth::user()->noTelp }}</div>
+                        <div class="stat-value text-2xl text-success">{{ Auth::user()->noTelp }}</div>
                     </div>
                     
                 </div>
@@ -51,7 +51,7 @@
                     
                     <div class="stat place-items-center">
                         <div class="stat-title">Tempat, Tanggal Lahir</div>
-                        <div class="stat-value text-2xl text-secondary">{{ Auth::user()->tempat_lahir }}, {{ Auth::user()->tanggal_lahir }}</div>
+                        <div class="stat-value text-2xl text-success">{{ Auth::user()->tempat_lahir }}, {{ Auth::user()->tanggal_lahir }}</div>
                     </div>
                     
                     
@@ -77,7 +77,7 @@
                     <div class="stats shadow m-4">
                         <div class="stat place-items-center">
                         <div class="stat-title">Status</div>
-                        <div class="stat-value text-2xl text-secondary">
+                        <div class="stat-value text-2xl text-success">
                             @if(Auth::user()->role === 0)
                                 Santri
                             @elseif(Auth::user()->role === 2)

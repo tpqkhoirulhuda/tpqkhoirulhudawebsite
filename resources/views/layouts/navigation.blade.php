@@ -30,10 +30,9 @@
                     </x-nav-link>
 
                     @else
-                    <x-nav-link :href="route('hasilpenilaian', ['id' => Auth::user()->id])" :active="request()->routeIs('hasilpenilaian')">
-                        {{ __('Hasil Penilaian') }}
+                    <x-nav-link :href="route('hasilpenilaianguru', ['id' => Auth::user()->id])" :active="request()->routeIs('hasilpenilaianguru')">
+                        {{ __('Hasil Penilaian Santri') }}
                     </x-nav-link>
-
                     @endif
 
                     <x-nav-link :href="route('penilaian')" :active="request()->routeIs('penilaian')">

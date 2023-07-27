@@ -32,6 +32,7 @@ Route::get('/datasantri',[ListUserController::class, 'ListSantri'])->middleware(
 // })->middleware(['auth'])->name('hasilpenilaian');
 
 Route::get('/hasil-penilaian/{id}', [NilaiController::class, 'HasilPenilaian'])->name('hasilpenilaian');
+Route::get('/hasilpenilaianguru', [NilaiController::class, 'PenilaianGuru'])->middleware(['auth'])->name('hasilpenilaianguru');
 
 Route::get('/penilaian', [NilaiController::class, 'Penilaian'])->middleware(['auth'])->name('penilaian');
 // Route::get('/penilaian',[ListUserController::class, 'ListSantri'])->middleware(['auth'])->name('penilaian');

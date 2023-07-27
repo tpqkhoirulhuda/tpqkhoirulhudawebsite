@@ -7,14 +7,15 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\User;
+use App\Models\Kelas;
 
 class ListUserController extends BaseController
 {
     public function ListSantri(){
         $user = User::where('role', 0)->get();
-
+        $kelas = Kelas::all();
         // return view('santri.List',['santri'=>$user]);
-        return view('datasantri',['santri'=>$user]);
+        return view('datasantri',['santri'=>$user, 'kelas'=>$kelas]);
     }
 
     public function ListGuru(){
