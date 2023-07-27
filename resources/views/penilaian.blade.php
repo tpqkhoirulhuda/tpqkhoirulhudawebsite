@@ -30,11 +30,11 @@
                       </label>
                       {{-- <select class="select select-bordered" id="searchUser" onchange="searchFunction()">
                         <option disabled selected>Nama</option>
-                        @foreach($santri as $st)
+                        @foreach($user as $st)
                           <option value="{{$st->id}}">{{$st->name}}</option>
                         @endforeach
                       </select> --}}
-                      {{-- <input id="searchUser" type="search" placeholder="nama" class="input input-bordered w-full max-w-xs" /> --}}
+                      <input id="searchUser" type="search" placeholder="nama" class="input input-bordered w-full max-w-xs" />
                       <label class="label">
                         <span class="label-text">Jenis Kelamin</span>
                       </label>
@@ -81,7 +81,7 @@
       </div>
   </div>
 
-  {{-- @section('custom-js')
+  @section('custom-js')
   <script>
     const searchUser = document.querySelector('#searchUser');
     const santri = @json($user);
@@ -103,5 +103,5 @@
         getSantri(filteredSantri);
     };
   </script>
-  @endsection --}}
+  @endsection
 </x-app-layout>
