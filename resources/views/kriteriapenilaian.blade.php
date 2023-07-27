@@ -44,7 +44,7 @@
                         <input name="hafalan" type="number" value="{{ $nilai->hafalan }}" class="input input-bordered w-full max-w-xs" />
                         <span>%</span>
                       </label>
-                      <div class="flex items-center gap-4">
+                      <div class="flex justify-center items-center gap-4">
                         <button class="btn btn-accent mt-3" type="submit">Save Kriteria Nilai</button>
                           @if (session('status') === 'profile-updated')
                               <p

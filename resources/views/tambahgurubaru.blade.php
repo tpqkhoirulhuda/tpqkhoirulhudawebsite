@@ -29,6 +29,9 @@
                           <span>@guru.kh.ac.id</span>
                         </label>
                         <x-input-error :messages="$errors->get('email')" class="mt-2"  />
+                        @error('email')
+                          <p class="text-red-500 mt-2">{{ $message }}</p>
+                        @enderror
                       </div>
               
                       <div class="mt-4">
