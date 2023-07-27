@@ -84,7 +84,7 @@
   {{-- @section('custom-js')
   <script>
     const searchUser = document.querySelector('#searchUser');
-    const santri = @json($santri);
+    const santri = @json($user);
 
     const getSantri = (filteredSantri) => {
         searchUser.innerHTML = filteredSantri.map((e) => {

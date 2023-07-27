@@ -15,6 +15,13 @@ use App\Models\Buku;
 
 class NilaiController extends BaseController
 {
+    public function ListSantri(){
+        $user = User::where('role', 0)->get();
+
+        // return view('santri.List',['santri'=>$user]);
+        return view('',['user'=>$user]);
+    }
+
     public function view(){
         $nilai = Nilai::where('id', 1)->first();
 
