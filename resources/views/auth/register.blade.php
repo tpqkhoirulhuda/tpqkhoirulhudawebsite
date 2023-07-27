@@ -36,7 +36,7 @@
                 <span>Laki-laki </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" checked value="Laki-laki"/>
                 <span>Perempuan </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" value="Perempuan"/>
                 @else
-                 <span>Laki-laki </span><input type="radio" name="jenis_kelamin" class="radio radio-accent"  value="Laki-laki"/>
+                <span>Laki-laki </span><input type="radio" name="jenis_kelamin" class="radio radio-accent"  value="Laki-laki"/>
                 <span>Perempuan </span><input type="radio" name="jenis_kelamin" class="radio radio-accent" checked value="Perempuan"/>
                 @endif
             </div>

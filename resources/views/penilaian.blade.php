@@ -21,15 +21,9 @@
                       </label>
                       <select class="select select-bordered">
                         <option disabled selected>Buku Jilid</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
+                        @foreach($buku as $bk)
+                          <option value="{{$bk->id}}">{{$bk->jilid_buku}}</option>
+                        @endforeach
                       </select>
                       <label class="label">
                         <span class="label-text">Nama</span>
@@ -48,9 +42,9 @@
                       </label>
                       <select class="select select-bordered">
                         <option disabled selected>Kelas</option>
-                        <option>TPQ A</option>
-                        <option>TPQ B</option>
-                        <option>TPQ L</option>
+                        @foreach($kelas as $kl)
+                          <option value="{{$kl->id}}">{{$kl->nama_kelas}}</option>
+                        @endforeach
                       </select>
                       <label class="label">
                         <span class="label-text">Absensi</span>

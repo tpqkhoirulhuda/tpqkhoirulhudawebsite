@@ -44,9 +44,12 @@
                       </label>
                       <select name="kelas_id" class="select select-bordered">
                         <option disabled selected>Kelas</option>
-                        <option value="1">TPQ A</option>
-                        <option value="2">TPQ B</option>
-                        <option value="3">TPQ L</option>
+                        @foreach($kelas as $kl)
+                          <option value="{{$kl->id}}">{{$kl->nama_kelas}}</option>
+                          
+
+                        @endforeach
+                        <x-input-error :messages="$errors->get('kelas_id')" class="mt-2"  />
                       </select>
 
                       <div class="mt-4">

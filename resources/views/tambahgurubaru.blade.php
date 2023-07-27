@@ -25,7 +25,7 @@
                       <div class="mt-4">
                         <x-input-label for="email" :value="__('Email')" />
                         <label class="input-group">
-                          <x-text-input id="email" class="block mt-1 w-full input input-bordered" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder='email' /> 
+                          <x-text-input onchange="InputEmail()" id="email" class="block mt-1 w-full input input-bordered" type="text" name="email" require :value="old('email')"  autocomplete="username" placeholder='email' /> 
                           <span>@guru.kh.ac.id</span>
                         </label>
                         <x-input-error :messages="$errors->get('email')" class="mt-2"  />

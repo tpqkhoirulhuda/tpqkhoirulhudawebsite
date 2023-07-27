@@ -24,9 +24,17 @@
                         {{ __('Data Santri') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('hasilpenilaian')" :active="request()->routeIs('hasilpenilaian')">
+                    @if(Auth::user()->role == 0)
+                    <x-nav-link :href="route('hasilpenilaian', ['id' => Auth::user()->id])" :active="request()->routeIs('hasilpenilaian')">
                         {{ __('Hasil Penilaian') }}
                     </x-nav-link>
+
+                    @else
+                    <x-nav-link :href="route('hasilpenilaian', ['id' => Auth::user()->id])" :active="request()->routeIs('hasilpenilaian')">
+                        {{ __('Hasil Penilaian') }}
+                    </x-nav-link>
+
+                    @endif
 
                     <x-nav-link :href="route('penilaian')" :active="request()->routeIs('penilaian')">
                         {{ __('Penilaian') }}
@@ -104,7 +112,7 @@
             <x-responsive-nav-link :href="route('datasantri')" :active="request()->routeIs('datasantri')">
                 {{ __('Data Santri') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('hasilpenilaian')" :active="request()->routeIs('hasilpenilaian')">
+            <x-responsive-nav-link :href="route('hasilpenilaian', ['id' => Auth::user()->id])" :active="request()->routeIs('hasilpenilaian')">
                 {{ __('Hasil Penilaian') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('penilaian')" :active="request()->routeIs('penilaian')">

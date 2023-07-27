@@ -8,6 +8,10 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use App\Models\Nilai;
+use App\Models\Penilaian;
+use App\Models\Kelas;
+use App\Models\User;
+use App\Models\Buku;
 
 class NilaiController extends BaseController
 {
@@ -18,7 +22,7 @@ class NilaiController extends BaseController
     }
 
     public function KriteriaPenilaian(Request $request){
-        $nilai = Nilai::where('id', 1)->first();
+        $nilai = Nilai::find(1);
 
         $request->validate([
             'tugas' => 'required|numeric',
@@ -27,9 +31,32 @@ class NilaiController extends BaseController
             'absen' => 'required|numeric',
         ]);
 
-        $nilai->fill($request);
+        $nilai->fill($request->all());
         $nilai->save();
-        return redirect()->route('kriteriapenilaian');
+        return redirect()->route('kriteriapenilaian')->with('status', 'profile-updated');
+    }
+
+    public function HasilPenilaian($id){
+
+
+        $penilaian = Penilaian::where('user_id', $id)->get();
+        $kelas = Kelas::all();
+        $user = User::where('id', $id)->first();
+        $nilai = Nilai::first();
+
+        if ($penilaian->isEmpty()) {
+            return abort(404);
+        }
+
+        return view('hasilpenilaian', ['penilaian' => $penilaian, 'kelas' => $kelas, 'user' => $user, 'nilai'=>$nilai]);
+    }
+
+    public function Penilaian(){
+        $kelas = Kelas::all();
+        $user = User::where('role', 0)->get();
+        $buku = Buku::all();
+
+        return view('penilaian', ['kelas'=>$kelas, 'user'=>$user, 'buku'=> $buku]);
     }
 
 }

@@ -20,31 +20,42 @@
                         <span class="label-text">Absen</span>
                       </label>
                       <label class="input-group">
-                        <input type="number" value="{{ $nilai->absen }}" class="input input-bordered w-full max-w-xs" />
+                        <input name="absen" type="number" value="{{ $nilai->absen }}" class="input input-bordered w-full max-w-xs" />
                         <span>%</span>
                       </label>
                       <label class="label">
                         <span class="label-text">Tugas</span>
                       </label>
                       <label class="input-group">
-                        <input type="number" value="{{ $nilai->tugas }}" class="input input-bordered w-full max-w-xs" />
+                        <input name="tugas" type="number" value="{{ $nilai->tugas }}" class="input input-bordered w-full max-w-xs" />
                         <span>%</span>
                       </label>
                       <label class="label">
                         <span class="label-text">Bacaan</span>
                       </label>
                       <label class="input-group">
-                        <input type="number" value="{{ $nilai->bacaan }}" class="input input-bordered w-full max-w-xs" />
+                        <input name="bacaan" type="number" value="{{ $nilai->bacaan }}" class="input input-bordered w-full max-w-xs" />
                         <span>%</span>
                       </label>
                       <label class="label">
                         <span class="label-text">Hafalan</span>
                       </label>
                       <label class="input-group">
-                        <input type="number" value="{{ $nilai->hafalan }}" class="input input-bordered w-full max-w-xs" />
+                        <input name="hafalan" type="number" value="{{ $nilai->hafalan }}" class="input input-bordered w-full max-w-xs" />
                         <span>%</span>
                       </label>
-                      <button class="btn btn-accent mt-3" type="submit">Save Kriteria Nilai</button>
+                      <div class="flex items-center gap-4">
+                        <button class="btn btn-accent mt-3" type="submit">Save Kriteria Nilai</button>
+                          @if (session('status') === 'profile-updated')
+                              <p
+                                  x-data="{ show: true }"
+                                  x-show="show"
+                                  x-transition
+                                  x-init="setTimeout(() => show = false, 2000)"
+                                  class="text-sm text-gray-600 dark:text-gray-400"
+                              >{{ __('Saved.') }}</p>
+                          @endif
+                      </div>
                     </div>
                   </form>
                 </div>

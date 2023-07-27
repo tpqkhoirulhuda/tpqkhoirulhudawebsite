@@ -33,27 +33,23 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <!-- row 1 -->
+                      @foreach($penilaian as $dataNilai)
                       <tr>
                         <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
-                      </tr>
-                      <!-- row 2 -->
-                      <tr>
-                        <th>2</th>
-                        <td>Hart Hagerty</td>
-                        <td>Desktop Support Technician</td>
-                        <td>Purple</td>
-                      </tr>
-                      <!-- row 3 -->
-                      <tr>
-                        <th>3</th>
-                        <td>Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                        <td>Red</td>
-                      </tr>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->jenis_kelamin == "Laki-laki" ? "L": "P"}}</td>
+                        <td>{{$kelas[$dataNilai->kelas_id]->nama_kelas}}</td>
+                        <td>{{$dataNilai->absen}}</td>
+                        <td>{{$dataNilai->tugas}}</td>
+                        <td>{{$dataNilai->bacaan}}</td>
+                        <td>{{$dataNilai->hafalan}}</td>
+                        <td>{{$dataNilai->absen*$nilai->absen+$dataNilai->tugas*$nilai->tugas+$dataNilai->bacaan*$nilai->bacaan+$dataNilai->hafalan*$nilai->hafalan}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        </tr>
+                      @endforeach
+                      
                     </tbody>
                   </table>
                 </div>

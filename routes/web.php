@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -26,23 +27,22 @@ Route::get('/dashboard', [ProfileController::class, 'dashboard'] )->middleware([
 Route::get('/dataguru',[ListUserController::class, 'ListGuru'])->middleware(['auth'])->name('dataguru');
 Route::get('/datasantri',[ListUserController::class, 'ListSantri'])->middleware(['auth'])->name('datasantri');
 
-Route::get('/hasilpenilaian', function () {
-    return view('hasilpenilaian');
-})->middleware(['auth', 'verified'])->name('hasilpenilaian');
+// Route::get('/hasilpenilaian', function () {
+//     return view('hasilpenilaian');
+// })->middleware(['auth'])->name('hasilpenilaian');
 
-Route::get('/penilaian', function () {
-    return view('penilaian');
-})->middleware(['auth', 'isGuru'])->name('penilaian');
+Route::get('/hasil-penilaian/{id}', [NilaiController::class, 'HasilPenilaian'])->name('hasilpenilaian');
+
+Route::get('/penilaian', [NilaiController::class, 'Penilaian'])->middleware(['auth'])->name('penilaian');
 
 Route::get('/kriteriapenilaian', [NilaiController::class, 'view'])->middleware(['auth'])->name('kriteriapenilaian');
 
-Route::get('/tambahsantribaru', function () {
-    return view('tambahsantribaru');
-})->middleware(['auth', 'verified'])->name('tambahsantribaru');
+Route::get('/tambahsantribaru', [RegisteredUserController::class, 'SantriView'])->middleware(['auth'])->name('tambahsantribaru');
 
 Route::get('/tambahgurubaru', function () {
     return view('tambahgurubaru');
 })->middleware(['auth', 'verified'])->name('tambahgurubaru');
+
 
 Route::post('/verifikasi-santri', [ProfileController::class, 'verifikasiSantri'])->middleware(['auth'])->name('verifikasi-santri');
 Route::post('/post/daftar-guru', [RegisteredUserController::class, 'storeGuruByAdmin'])->middleware(['auth'])->name('daftar-guru');
