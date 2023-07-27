@@ -31,6 +31,12 @@ class User extends Authenticatable
         'kelas_id'
     ];
 
+    // User.php (User model)
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'kelas_id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

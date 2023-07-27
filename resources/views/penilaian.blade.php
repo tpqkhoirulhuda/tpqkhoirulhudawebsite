@@ -28,7 +28,13 @@
                       <label class="label">
                         <span class="label-text">Nama</span>
                       </label>
-                      <input type="search" placeholder="nama" class="input input-bordered w-full max-w-xs" />
+                      {{-- <select class="select select-bordered" id="searchUser" onchange="searchFunction()">
+                        <option disabled selected>Nama</option>
+                        @foreach($santri as $st)
+                          <option value="{{$st->id}}">{{$st->name}}</option>
+                        @endforeach
+                      </select> --}}
+                      {{-- <input id="searchUser" type="search" placeholder="nama" class="input input-bordered w-full max-w-xs" /> --}}
                       <label class="label">
                         <span class="label-text">Jenis Kelamin</span>
                       </label>
@@ -74,4 +80,28 @@
           </div>
       </div>
   </div>
+
+  {{-- @section('custom-js')
+  <script>
+    const searchUser = document.querySelector('#searchUser');
+    const santri = @json($santri);
+
+    const getSantri = (filteredSantri) => {
+        searchUser.innerHTML = filteredSantri.map((e) => {
+            return `
+            <option value="${e.id}">${e.name}</option>
+            `;
+        }).join('');
+    };
+
+    // Initial display of all santri
+    getSantri(santri);
+
+    const searchFunction = () => {
+        const searchValue = document.querySelector("#searchUser").value.toLowerCase();
+        const filteredSantri = santri.filter((e) => e.name.toLowerCase().includes(searchValue));
+        getSantri(filteredSantri);
+    };
+  </script>
+  @endsection --}}
 </x-app-layout>
