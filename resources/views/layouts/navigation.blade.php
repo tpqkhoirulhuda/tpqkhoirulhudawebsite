@@ -121,18 +121,26 @@
             <x-responsive-nav-link :href="route('hasilpenilaian', ['id' => Auth::user()->id])" :active="request()->routeIs('hasilpenilaian')">
                 {{ __('Hasil Penilaian') }}
             </x-responsive-nav-link>
+            @if(Auth::user()->role != 0)
             <x-responsive-nav-link :href="route('penilaian')" :active="request()->routeIs('penilaian')">
                 {{ __('Penilaian') }}
             </x-responsive-nav-link>
+            @endif
+            @if(Auth::user()->role == 1)
             <x-responsive-nav-link :href="route('kriteriapenilaian')" :active="request()->routeIs('kriteriapenilaian')">
                 {{ __('Kriteria Penilaian') }}
             </x-responsive-nav-link>
+            @endif
+            @if(Auth::user()->role != 0)
             <x-responsive-nav-link :href="route('tambahsantribaru')" :active="request()->routeIs('tambahsantribaru')">
                 {{ __('Tambah Santri') }}
             </x-responsive-nav-link>
+            @endif
+            @if(Auth::user()->role == 1)
             <x-responsive-nav-link :href="route('tambahgurubaru')" :active="request()->routeIs('tambahgurubaru')">
                 {{ __('Tambah Guru') }}
             </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
