@@ -10,6 +10,8 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100 text-center text-4xl">
                     {{ __("Halo, ") }} {{ Auth::user()->name }}
+                    
+                    
                 </div>
                 <div class="flex flex-col justify-center">
                     <div class="stats shadow m-4">

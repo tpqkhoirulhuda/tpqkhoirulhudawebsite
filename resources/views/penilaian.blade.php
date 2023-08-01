@@ -11,6 +11,7 @@
               <div class="p-6 text-gray-900 dark:text-gray-100 text-center text-4xl">
                   {{ __("Penilaian") }}
               </div>
+              
               <div class="flex flex-col justify-center p-5">
                 <div class="">
                   <form action="" class="flex flex-col items-center justify-center">

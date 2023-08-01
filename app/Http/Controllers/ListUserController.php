@@ -6,21 +6,57 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use App\Http\Requests\DataSantriRequest;
+use Illuminate\Validation\Validator;
+use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Kelas;
+use App\Models\Nilai;
 
 class ListUserController extends BaseController
 {
     public function ListSantri(){
         $user = User::where('role', 0)->get();
         $kelas = Kelas::all();
-        // return view('santri.List',['santri'=>$user]);
-        return view('datasantri',['santri'=>$user, 'kelas'=>$kelas]);
+        $nilai = Nilai::first();
+        return view('datasantri',['santri'=>$user, 'kelas'=>$kelas, 'nilai'=>$nilai]);
     }
 
     public function ListGuru(){
         $user = User::where('role', 2)->get();
 
         return view('dataguru',['guru' => $user]);
+    }
+
+    public function deleteSantri($request){
+        
+    }
+
+    public function deleteGuru(){
+
+    }
+
+    public function updateSantri(Request $request){
+        
+        
+        try{
+            $user = User::where('id', $request->id)->first();
+            $user->fill($request->all());
+            $user->save();
+            return redirect()->route('datasantri')->with('status', 'profile-updated');
+        }catch(Exception $err){
+            return redirect()->route('datasantri')->with('status', 'profile-not-update');
+        }
+       
+        
+        
+    }
+
+    public function updateGuru(DataSantriRequest $request){
+        $user = User::where('id', $request->id)->first();
+        $user->fill($request->all());
+        $user->save();
+
+        return redirect()->route('dataguru')->with('status', 'profile-updated');
     }
 }

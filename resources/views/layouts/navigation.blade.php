@@ -28,28 +28,35 @@
                     <x-nav-link :href="route('hasilpenilaian', ['id' => Auth::user()->id])" :active="request()->routeIs('hasilpenilaian')">
                         {{ __('Hasil Penilaian') }}
                     </x-nav-link>
-
                     @else
                     <x-nav-link :href="route('hasilpenilaianguru', ['id' => Auth::user()->id])" :active="request()->routeIs('hasilpenilaianguru')">
                         {{ __('Hasil Penilaian Santri') }}
                     </x-nav-link>
                     @endif
 
+                    @if(Auth::user()->role != 0)
                     <x-nav-link :href="route('penilaian')" :active="request()->routeIs('penilaian')">
                         {{ __('Penilaian') }}
                     </x-nav-link>
+                    @endif
 
+                    @if(Auth::user()->role == 1)
                     <x-nav-link :href="route('kriteriapenilaian')" :active="request()->routeIs('kriteriapenilaian')">
                         {{ __('Kriteria Penilaian') }}
                     </x-nav-link>
+                    @endif
 
+                    @if(Auth::user()->role != 0)
                     <x-nav-link :href="route('tambahsantribaru')" :active="request()->routeIs('tambahsantribaru')">
                         {{ __('Tambah Santri') }}
                     </x-nav-link>
+                    @endif
 
+                    @if(Auth::user()->role == 1)
                     <x-nav-link :href="route('tambahgurubaru')" :active="request()->routeIs('tambahgurubaru')">
                         {{ __('Tambah Guru') }}
                     </x-nav-link>
+                    @endif
                 </div>
             </div>
 

@@ -22,34 +22,43 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', [ProfileController::class, 'dashboard'] )->middleware(['auth'])->name('dashboard');
+Route::middleware('auth', 'santriVerified')->group(function(){
+    Route::get('/dashboard', [ProfileController::class, 'dashboard'] )->middleware(['auth'])->name('dashboard');
+    Route::get('/dataguru',[ListUserController::class, 'ListGuru'])->middleware(['auth'])->name('dataguru');
+    Route::get('/datasantri',[ListUserController::class, 'ListSantri'])->middleware(['auth'])->name('datasantri');
 
-Route::get('/dataguru',[ListUserController::class, 'ListGuru'])->middleware(['auth'])->name('dataguru');
-Route::get('/datasantri',[ListUserController::class, 'ListSantri'])->middleware(['auth'])->name('datasantri');
+    Route::get('/hasil-penilaian/{id}', [NilaiController::class, 'HasilPenilaian'])->name('hasilpenilaian');
+    Route::get('/hasilpenilaianguru', [NilaiController::class, 'PenilaianGuru'])->middleware(['auth'])->name('hasilpenilaianguru');
 
-// Route::get('/hasilpenilaian', function () {
-//     return view('hasilpenilaian');
-// })->middleware(['auth'])->name('hasilpenilaian');
-
-Route::get('/hasil-penilaian/{id}', [NilaiController::class, 'HasilPenilaian'])->name('hasilpenilaian');
-Route::get('/hasilpenilaianguru', [NilaiController::class, 'PenilaianGuru'])->middleware(['auth'])->name('hasilpenilaianguru');
-
-Route::get('/penilaian', [NilaiController::class, 'Penilaian'])->middleware(['auth'])->name('penilaian');
-// Route::get('/penilaian',[ListUserController::class, 'ListSantri'])->middleware(['auth'])->name('penilaian');
-
-Route::get('/kriteriapenilaian', [NilaiController::class, 'view'])->middleware(['auth'])->name('kriteriapenilaian');
-
-Route::get('/tambahsantribaru', [RegisteredUserController::class, 'SantriView'])->middleware(['auth'])->name('tambahsantribaru');
-
-Route::get('/tambahgurubaru', function () {
-    return view('tambahgurubaru');
-})->middleware(['auth', 'verified'])->name('tambahgurubaru');
+    // Route::get('/hasilpenilaian', function () {
+    //     return view('hasilpenilaian');
+    // })->middleware(['auth'])->name('hasilpenilaian');
 
 
-Route::post('/verifikasi-santri', [ProfileController::class, 'verifikasiSantri'])->middleware(['auth'])->name('verifikasi-santri');
-Route::post('/post/daftar-guru', [RegisteredUserController::class, 'storeGuruByAdmin'])->middleware(['auth'])->name('daftar-guru');
-Route::post('/post/daftar-santri', [RegisteredUserController::class, 'storeSantriByAdmin'])->middleware(['auth'])->name('daftar-santri');
-Route::post('/post/kriteria-penilaian', [NilaiController::class, 'KriteriaPenilaian'])->middleware(['auth'])->name("kriteria-penilaian");
+    Route::get('/penilaian', [NilaiController::class, 'Penilaian'])->middleware(['auth'])->name('penilaian');
+    Route::post('/penilaian', [NilaiController::class, 'KasihNilai'])->name("kasihNIlai");
+    // Route::get('/penilaian',[ListUserController::class, 'ListSantri'])->middleware(['auth'])->name('penilaian');
+
+    Route::get('/kriteriapenilaian', [NilaiController::class, 'view'])->middleware(['auth'])->name('kriteriapenilaian');
+
+    Route::get('/tambahsantribaru', [RegisteredUserController::class, 'SantriView'])->middleware(['auth'])->name('tambahsantribaru');
+
+    Route::get('/tambahgurubaru', function () {
+        return view('tambahgurubaru');
+    })->middleware(['auth'])->name('tambahgurubaru');
+
+
+    Route::post('/verifikasi-santri', [ProfileController::class, 'verifikasiSantri'])->middleware(['auth'])->name('verifikasi-santri');
+    Route::post('/post/daftar-guru', [RegisteredUserController::class, 'storeGuruByAdmin'])->middleware(['auth'])->name('daftar-guru');
+    Route::post('/post/daftar-santri', [RegisteredUserController::class, 'storeSantriByAdmin'])->middleware(['auth'])->name('daftar-santri');
+    Route::post('/post/kriteria-penilaian', [NilaiController::class, 'KriteriaPenilaian'])->middleware(['auth'])->name("kriteria-penilaian");
+
+    Route::patch('/guru', [ListUserController::class, "updateGuru"])->middleware(['auth'])->name("guru-update");
+    Route::patch('/santri', [ListUserController::class, "updateSantri"])->middleware(['auth'])->name("santri-update");
+    Route::post('/delete/santri', [ListUserController::class, "deleteSantri"])->name("santri.delete");
+    Route::post('/delete/guru', [ListUserController::class, "deleteGuru"])->name("guru.delete");
+});
+
 
 Route::middleware('auth', 'santriVerified')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

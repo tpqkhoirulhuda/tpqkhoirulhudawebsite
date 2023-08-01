@@ -19,7 +19,6 @@
                   {{ __("Daftar Guru") }}
               </div>
               <div class="box-list flex flex-col justify-center m-4">
-                
               </div>
           </div>
         </div>
@@ -38,12 +37,16 @@
                 <div class="collapse-title text-xl font-medium">
                     ${e.name}
                 </div>
+                
                 <div class="collapse-content"> 
                     <p>tabindex="0" attribute is necessary to make the div focusable</p>
-                    <div class="mt-2 space-x-2">
-                        <button class="btn btn-success btn-outline">Edit</button>
-                        <button class="btn btn-error btn-outline">Delete</button>
-                    </div>
+
+                    @if(Auth::user()->role == 1)
+                        <div class="mt-2 space-x-2">
+                            <button class="btn btn-success btn-outline">Edit</button>
+                            <button class="btn btn-error btn-outline">Delete</button>
+                        </div>
+                    @endif
                 </div>
             </div>
             `;

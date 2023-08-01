@@ -21,7 +21,6 @@
                   {{ __("Hasil Penilaian Santri") }}
               </div>
               <div class="box-list flex flex-col justify-center m-4">
-                
               </div>
           </div>
         </div>
@@ -64,7 +63,7 @@
                                 <h3 class="font-bold text-lg">Lihat Hasil Santri</h3>
                                 <p class="py-4">Apakah kamu yakin mau Lihat Hasil ${e.name} ?</p>
                                 <div class="modal-action">
-                                    <label for="lihathasil ${e.name}" class="btn btn-success btn-outline">Lihat</label>
+                                    <x-nav-link href="/hasil-penilaian/${e.id}" ><button for="lihathasil ${e.name}" class="btn btn-success btn-outline">Lihat</button></x-nav-link>
                                     <label for="lihathasil ${e.name}" class="btn btn-info btn-outline">Cancel</label>
                                 </div>
                             </div>                            

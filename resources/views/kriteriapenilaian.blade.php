@@ -13,6 +13,7 @@
               </div>
               <div class="flex flex-col justify-center p-5">
                 <div class="">
+            
                   <form action="{{ route('kriteria-penilaian') }}" method="post" class="flex flex-col items-center justify-center">
                     @csrf
                     <div class="form-control">

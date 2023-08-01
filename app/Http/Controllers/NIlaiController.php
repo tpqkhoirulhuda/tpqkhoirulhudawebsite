@@ -74,4 +74,9 @@ class NilaiController extends BaseController
         return view('hasilpenilaianguru', ['kelas'=>$kelas, 'user'=>$user, 'buku'=> $buku]);
     }
 
+    public function KasihNilai(Request $request){
+        $user = Penilaian::where('id', $request->id)->first();
+        $user->fill($request->all());
+    }
+
 }
