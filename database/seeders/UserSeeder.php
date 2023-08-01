@@ -42,6 +42,20 @@ class UserSeeder extends Seeder
             'ibu' => null,
             'kelas_id' => null,
         ]);
+
+        User::create([
+            'name' => "nehe & koong",
+            'email' => "adminng@admin.kh.ac.id",
+            'password' => bcrypt('1234567890'),
+            'alamat' => "tangerang",
+            'noTelp' => "0987654321",
+            'role' => 1,
+            'jenis_kelamin' => "Laki-laki",
+            'tempat_lahir' => "JakSel",
+            'tanggal_lahir' => "2003-11-01", 
+            'ibu' => null,
+            'kelas_id' => null,
+        ]);
     }
 
 }

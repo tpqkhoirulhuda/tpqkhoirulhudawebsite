@@ -14,13 +14,14 @@
               
               <div class="flex flex-col justify-center p-5">
                 <div class="">
-                  <form action="" class="flex flex-col items-center justify-center">
+                  <form method="post" action="{{route('kasihNilai')}}" class="flex flex-col items-center justify-center">
                     @csrf
+                    <input hidden id="user_id" name="id" />
                     <div class="form-control">
                       <label class="label">
                         <span class="label-text">Buku Jilid</span>
                       </label>
-                      <select class="select select-bordered">
+                      <select name="buku_id" class="select select-bordered">
                         <option disabled selected>Buku Jilid</option>
                         @foreach($buku as $bk)
                           <option value="{{$bk->id}}">{{$bk->jilid_buku}}</option>
@@ -30,7 +31,7 @@
                         <span class="label-text">Nama</span>
                       </label>
                       <div class="relative">
-                        <input id="searchUser" onchange="searchFunction()" placeholder="nama" class="input input-bordered w-full max-w-xs" />
+                        <input  id="searchUser" onchange="searchFunction()" placeholder="nama" class="input input-bordered w-full max-w-xs" />
                         <div id="dropDown" class="flex flex-col absolute hidden bg-[#1d232a] rounded border border-zinc-700 w-full p-2">
                         </div>
                       </div>
@@ -55,24 +56,24 @@
                       <label class="label">
                         <span class="label-text">Absensi</span>
                       </label>
-                      <input type="number" placeholder="absensi" class="input input-bordered w-full max-w-xs" />
+                      <input name="absen" type="number" placeholder="absensi" class="input input-bordered w-full max-w-xs" />
                       <label class="label">
                         <span class="label-text">Tugas</span>
                       </label>
-                      <input type="number" placeholder="tugas" class="input input-bordered w-full max-w-xs" />
+                      <input name="tugas" type="number" placeholder="tugas" class="input input-bordered w-full max-w-xs" />
                       <label class="label">
                         <span class="label-text">Bacaan</span>
                       </label>
-                      <input type="number" placeholder="bacaan" class="input input-bordered w-full max-w-xs" />
+                      <input name="bacaan" type="number" placeholder="bacaan" class="input input-bordered w-full max-w-xs" />
                       <label class="label">
                         <span class="label-text">Hafalan</span>
                       </label>
-                      <input type="number" placeholder="hafalan" class="input input-bordered w-full max-w-xs" />
+                      <input name="hafalan" type="number" placeholder="hafalan" class="input input-bordered w-full max-w-xs" />
                       <label class="label">
                         <span class="label-text">Rata-rata Jilid</span>
                       </label>
-                      <input type="number" placeholder="rata-rata jilid" class="input input-bordered w-full max-w-xs" />
-                      <button class="btn btn-accent mt-3">Submit Nilai</button>
+                      <input name="rata-rata_jilid" type="number" placeholder="rata-rata jilid" class="input input-bordered w-full max-w-xs" />
+                      <button type="submit" class="btn btn-accent mt-3">Submit Nilai</button>
                     </div>
                   </form>
                 </div>
@@ -85,7 +86,7 @@
   <script>
     const searchUser = document.querySelector('#searchUser');
     const dropDown = document.querySelector('#dropDown');
-    // const dropItem = document.querySelectorAll(".dropItem");
+    const ID = document.querySelector("#user_id");
     const santri = @json($user);
 
     // dropItem.forEach((e)=>{
@@ -96,15 +97,16 @@
     // })
 
     
-    const setInput = (value) =>{
+    const setInput = (name, id) =>{
       dropDown.classList.add("hidden");
-      searchUser.value = value;
+      searchUser.value = name;
+      ID.value = id;
     }
 
     const getSantri = (filteredSantri) => {
       dropDown.classList.remove("hidden");
       dropDown.innerHTML = filteredSantri.map((e) => {
-        return `<div onclick="setInput('${e.name}')" class="dropItem cursor-pointer w-full">
+        return `<div onclick="setInput('${e.name}', '${e.id}')" class="dropItem cursor-pointer w-full">
           ${e.name}
         </div>`
       }).join('');

@@ -7,7 +7,7 @@
 
   <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <button class="btn btn-primary mb-4">Cetak Hasil</button>
+        <a href="{{route('excel.export')}}"><button class="btn btn-primary mb-4">Cetak Hasil</button></a>
           <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900 dark:text-gray-100 text-center text-4xl">
               {{ __("Hasil Penilaian ") }} {{ Auth::user()->name }}
@@ -43,7 +43,7 @@
                           <td>{{$dataNilai->tugas}}</td>
                           <td>{{$dataNilai->bacaan}}</td>
                           <td>{{$dataNilai->hafalan}}</td>
-                          <td>{{$dataNilai->absen*$nilai->absen+$dataNilai->tugas*$nilai->tugas+$dataNilai->bacaan*$nilai->bacaan+$dataNilai->hafalan*$nilai->hafalan}}</td>
+                          <td>{{($dataNilai->absen*($nilai->absen / 100)) + ($dataNilai->tugas*($nilai->tugas/100)) + ($dataNilai->bacaan*($nilai->bacaan/100)) + ($dataNilai->hafalan*($nilai->hafalan/100))}}</td>
                           <td></td>
                           <td></td>
                           <td></td>

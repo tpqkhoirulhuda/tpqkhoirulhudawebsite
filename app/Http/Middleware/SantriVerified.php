@@ -18,7 +18,8 @@ class SantriVerified
     public function handle(Request $request, Closure $next)
     {
         if (Auth::user()->role == 0 && (Auth::user()->ibu == null || Auth::user()->kelas_id == null)) {
-            return redirect()->route('dashboard');
+            redirect()->route('dashboard');
+            return $next($request);
         }
 
         return $next($request);

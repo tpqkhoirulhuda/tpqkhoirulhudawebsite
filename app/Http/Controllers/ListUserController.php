@@ -28,35 +28,26 @@ class ListUserController extends BaseController
         return view('dataguru',['guru' => $user]);
     }
 
-    public function deleteSantri($request){
-        
+    public function deleteUser(Request $request){
+        try{
+            $user = User::where('id', $request->id)->delete();
+            
+            return redirect()->back()->with('status', 'profile-updated');
+        }catch(Exception $err){
+            return redirect()->back()->with('status', 'profile-not-update');
+        }
     }
 
-    public function deleteGuru(){
-
-    }
-
-    public function updateSantri(Request $request){
-        
-        
+    public function updateUser(Request $request){
         try{
             $user = User::where('id', $request->id)->first();
             $user->fill($request->all());
             $user->save();
-            return redirect()->route('datasantri')->with('status', 'profile-updated');
+            return redirect()->back()->with('status', 'profile-updated');
         }catch(Exception $err){
-            return redirect()->route('datasantri')->with('status', 'profile-not-update');
+             return redirect()->back()->with('status', 'profile-not-update');
         }
-       
-        
-        
     }
 
-    public function updateGuru(DataSantriRequest $request){
-        $user = User::where('id', $request->id)->first();
-        $user->fill($request->all());
-        $user->save();
 
-        return redirect()->route('dataguru')->with('status', 'profile-updated');
-    }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\ListUserController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExcelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +37,7 @@ Route::middleware('auth', 'santriVerified')->group(function(){
 
 
     Route::get('/penilaian', [NilaiController::class, 'Penilaian'])->middleware(['auth'])->name('penilaian');
-    Route::post('/penilaian', [NilaiController::class, 'KasihNilai'])->name("kasihNIlai");
+    Route::post('/penilaian', [NilaiController::class, 'KasihNilai'])->name("kasihNilai");
     // Route::get('/penilaian',[ListUserController::class, 'ListSantri'])->middleware(['auth'])->name('penilaian');
 
     Route::get('/kriteriapenilaian', [NilaiController::class, 'view'])->middleware(['auth'])->name('kriteriapenilaian');
@@ -53,10 +54,10 @@ Route::middleware('auth', 'santriVerified')->group(function(){
     Route::post('/post/daftar-santri', [RegisteredUserController::class, 'storeSantriByAdmin'])->middleware(['auth'])->name('daftar-santri');
     Route::post('/post/kriteria-penilaian', [NilaiController::class, 'KriteriaPenilaian'])->middleware(['auth'])->name("kriteria-penilaian");
 
-    Route::patch('/guru', [ListUserController::class, "updateGuru"])->middleware(['auth'])->name("guru-update");
-    Route::patch('/santri', [ListUserController::class, "updateSantri"])->middleware(['auth'])->name("santri-update");
-    Route::post('/delete/santri', [ListUserController::class, "deleteSantri"])->name("santri.delete");
-    Route::post('/delete/guru', [ListUserController::class, "deleteGuru"])->name("guru.delete");
+    Route::patch('/user', [ListUserController::class, "updateUser"])->middleware(['auth'])->name("user.update");
+    Route::post('/delete/user', [ListUserController::class, "deleteUser"])->name("user.delete");
+
+    Route::get("/export/excel", [ExcelController::class, 'export'])->name("excel.export");
 });
 
 

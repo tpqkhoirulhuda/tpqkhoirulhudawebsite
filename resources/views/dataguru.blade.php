@@ -59,9 +59,10 @@
                         <div class="modal-box">
                             <div class="flex flex-col justify-center items-center p-4">
                                 <h3 class="font-bold text-lg">Edit Data Santri</h3>
-                                <form action="{{ route('santri-update') }}" method="post">
+                                <form action="{{ route('user.update') }}" method="post">
                                     @csrf  
                                     @method('patch')
+
                                         <input hidden class="input input-bordered w-full max-w-xs" name="id" value="${e.id}" />
                                         <label class="label">
                                             <span class="label-text">Nama</span>
@@ -120,7 +121,11 @@
                                 <h3 class="font-bold text-lg">Delete Santri</h3>
                                 <p class="py-4">Apakah kamu yakin mau menghapus data ${e.name}</p>
                                 <div class="modal-action">
-                                    <label for="delete ${e.name}" class="btn btn-error btn-outline">Delete</label>
+                                     <form method="post" action="{{route('user.delete')}}">
+                                        @csrf
+                                        <input name="id" hidden value="${e.id}" />
+                                        <button type="submit" class="btn btn-error btn-outline">Delete</button>
+                                    </form>
                                     <label for="delete ${e.name}" class="btn btn-info btn-outline">Cancel</label>
                                 </div>
                             </div>

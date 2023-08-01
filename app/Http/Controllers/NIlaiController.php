@@ -75,8 +75,11 @@ class NilaiController extends BaseController
     }
 
     public function KasihNilai(Request $request){
-        $user = Penilaian::where('id', $request->id)->first();
-        $user->fill($request->all());
+        // dd($request);
+        $penilaian = Penilaian::where('user_id', $request->id)->where('buku_id', $request->buku_id)->first();
+        $penilaian->fill($request->all());
+        $penilaian->save();
+        return redirect()->back();
     }
 
 }

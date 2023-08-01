@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\Kelas;
+use App\Models\Buku;
+use App\Models\Penilaian;
 
 class ProfileController extends Controller
 {
@@ -19,13 +21,13 @@ class ProfileController extends Controller
 
     public function verifikasiSantri(Request $request)
     {
-
             $request->validate([
                 'kelas' => 'required|numeric',
                 'ibu' => 'required|string|max:255',
             ]);
 
             $user = Auth::user();
+            $bukus = Buku::all();
 
             $user->fill([
                 'kelas_id' => $request->kelas,
@@ -34,8 +36,20 @@ class ProfileController extends Controller
 
             $user->save();
 
-            return redirect()->route('dashboard')->with('success', 'User data updated successfully!');
+            foreach ($bukus as $buku) {
+                Penilaian::create([
+                    "user_id" => $user->id,
+                    "buku_id" => $buku->id,
+                    "kelas_id" => $user->kelas_id,
+                    "tugas" => null,
+                    "bacaan" => null,
+                    "hafalan" => null,
+                    "absen" => null,
+                    "rata-rata_jilid" => null
+                ]);
+            }
 
+            return redirect()->route('dashboard')->with('success', 'User data updated successfully!');
     }
 
 
@@ -45,6 +59,7 @@ class ProfileController extends Controller
             'kelas' => $kelas,
         ]);
     }
+
     /**
      * Display the user's profile form.
      */

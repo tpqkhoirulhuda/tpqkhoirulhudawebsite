@@ -38,7 +38,9 @@
                     @if(Auth::user()->role === 0) 
                     <div class="stat place-items-center">
                         <div class="stat-title">Kelas</div>
-                        <div class="stat-value text-lg">{{ Auth::user()->kelas->nama_kelas }}</div>
+                        @if(Auth::user()->kelas != null)
+                            <div class="stat-value text-lg">{{ Auth::user()->kelas->nama_kelas }}</div>
+                        @endif
                     </div>
                     @endif
                     
