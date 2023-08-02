@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'santriVerified'  => \App\Http\Middleware\SantriVerified::class,
         'isGuru'  => \App\Http\Middleware\IsGuru::class,
         'isAdmin'  => \App\Http\Middleware\IsAdmin::class,
+        'isGuruAdmin'  => \App\Http\Middleware\IsGuruAdmin::class,
     ];
 }
