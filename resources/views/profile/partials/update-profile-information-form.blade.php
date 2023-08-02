@@ -54,7 +54,7 @@
         @if($user->role == '0')
         <div>
             <x-input-label for="mother" :value="__('Nama Ibu')" />
-            <x-text-input id="mother" name="mother" type="text" class="mt-1 block w-full" :value="old('mother', $user->mother)" required autocomplete="mother" />
+            <x-text-input id="mother" name="mother" type="text" class="mt-1 block w-full" :value="old('mother', $user->ibu)" required autocomplete="mother" />
             <x-input-error class="mt-2" :messages="$errors->get('mother')" />
         </div>
         @endif
