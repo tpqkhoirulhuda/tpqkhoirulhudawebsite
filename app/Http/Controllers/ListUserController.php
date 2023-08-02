@@ -32,7 +32,7 @@ class ListUserController extends BaseController
         try{
             $user = User::where('id', $request->id)->delete();
             
-            return redirect()->back()->with('status', 'profile-updated');
+            return redirect()->back()->with('status', 'profile-deleted');
         }catch(Exception $err){
             return redirect()->back()->with('status', 'profile-not-update');
         }
