@@ -39,7 +39,7 @@ Route::middleware('auth', 'santriVerified')->group(function(){
 
     Route::get("/export/excel", [ExcelController::class, 'export'])->name("excel.export");
 
-    Route::middleware('IsGuruAdmin')->group(function(){
+    Route::middleware('isGuruAdmin')->group(function(){
         Route::get('/tambahsantribaru', [RegisteredUserController::class, 'SantriView'])->name('tambahsantribaru');
         Route::get('/hasilpenilaianguru', [NilaiController::class, 'PenilaianGuru'])->name('hasilpenilaianguru');
         Route::get('/penilaian', [NilaiController::class, 'Penilaian'])->middleware(['auth'])->name('penilaian');
@@ -48,7 +48,7 @@ Route::middleware('auth', 'santriVerified')->group(function(){
         Route::patch('/user', [ListUserController::class, "updateUser"])->middleware(['auth'])->name("user.update");
         Route::post('/delete/user', [ListUserController::class, "deleteUser"])->name("user.delete");
 
-        Route::middleware('IsAdmin')->group(function(){
+        Route::middleware('isAdmin')->group(function(){
             Route::get('/tambahgurubaru', function () {
                 return view('tambahgurubaru');
             })->name('tambahgurubaru');
