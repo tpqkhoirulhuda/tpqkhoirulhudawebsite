@@ -21,6 +21,24 @@
               </div>
               <div class="box-list flex flex-col justify-center m-4">
               </div>
+            @if (session('status') === 'profile-updated')
+                <div class="alert alert-success fixed top-0 left-[50%] w-[50%] translate-x-[-50%]" x-data="{ show: true }"
+                x-show="show"
+                x-transition
+                x-init="setTimeout(() => show = false, 2000)">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6"  fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <p>{{ __('Perubahan data berhasil') }}</p>
+                </div>
+            @endif
+            @if (session('status') === 'profile-deleted')
+                <div class="alert alert-success fixed top-0 left-[50%] w-[50%] translate-x-[-50%]" x-data="{ show: true }"
+                x-show="show"
+                x-transition
+                x-init="setTimeout(() => show = false, 2000)">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6"  fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <p>{{ __('Data berhasil dihapus') }}</p>
+                </div>
+            @endif
           </div>
         </div>       
       </div>
@@ -74,7 +92,7 @@
                                             <span class="label-text">Kelas</span>
                                         </label>
 
-                                        <select name="kelas_id" value="${e.kelas_id==null ? null : e.kelas_id}" class="select w-full max-w-xs">
+                                        <select name="kelas_id" value="${e.kelas_id==null ? null : e.kelas_id}" class="select input-bordered w-full max-w-xs">
                                             <option  disabled selected>${e.kelas_id==null ? "Belum ada kelas" : kelas[e.kelas_id-1].nama_kelas} -- Kelas Sekarang</option>
                                             @foreach($kelas as $kl)
                                                 <option value="{{$kl->id}}">${e.kelas_id == "{{$kl->id}}" ? "{{$kl->nama_kelas}} -- Kelas Sekarang": "{{$kl->nama_kelas}}"}</option>

@@ -44,7 +44,7 @@
                           <td>{{$dataNilai->bacaan}}</td>
                           <td>{{$dataNilai->hafalan}}</td>
                           <td>{{($dataNilai->absen*($nilai->absen / 100)) + ($dataNilai->tugas*($nilai->tugas/100)) + ($dataNilai->bacaan*($nilai->bacaan/100)) + ($dataNilai->hafalan*($nilai->hafalan/100))}}</td>
-                          <td></td>
+                          <td>{{ $dataNilai->{'rata-rata_jilid'} }}</td>
                           <td></td>
                           <td></td>
                           </tr>
