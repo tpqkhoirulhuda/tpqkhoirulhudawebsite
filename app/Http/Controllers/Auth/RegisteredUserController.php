@@ -14,6 +14,8 @@ use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
 use App\Models\Kelas;
+use App\Models\Buku;
+use App\Models\Penilaian;
 use Illuminate\Support\Facades\Validator;
 
 class RegisteredUserController extends Controller
@@ -78,7 +80,7 @@ class RegisteredUserController extends Controller
 
     public function storeSantriByAdmin(Request $request): RedirectResponse
     {
-
+        $bukus = Buku::all();
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
@@ -111,6 +113,19 @@ class RegisteredUserController extends Controller
             'ibu' => $request->ibu,
             'kelas_id' => $request->kelas_id
         ]);
+
+        foreach ($bukus as $buku) {
+            Penilaian::create([
+                "user_id" => $user->id,
+                "buku_id" => $buku->id,
+                "kelas_id" => $user->kelas_id,
+                "tugas" => null,
+                "bacaan" => null,
+                "hafalan" => null,
+                "absen" => null,
+                "rata-rata_jilid" => null
+            ]);
+        }
 
         event(new Registered($user));
 

@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Nilai;
+use Illuminate\Validation\Rule;
+
 
 class ListUserController extends BaseController
 {
@@ -39,6 +41,20 @@ class ListUserController extends BaseController
     }
 
     public function updateUser(Request $request){
+        // dd($request);
+
+        $request->validate([
+            'id' => "required",
+            'name' => ['string', 'max:255'],
+            'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($request->id)],
+            'alamat' => 'required|string|max:255',
+            'noTelp' => 'required|string|max:20',
+            'jenis_kelamin' => 'required|string',
+            'tanggal_lahir' => 'required|date',
+            'tempat_lahir' => 'required|string',
+        ]);
+
+
         try{
             $user = User::where('id', $request->id)->first();
             $user->fill($request->all());

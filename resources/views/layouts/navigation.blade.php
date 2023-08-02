@@ -29,7 +29,7 @@
                         {{ __('Hasil Penilaian') }}
                     </x-nav-link>
                     @else
-                    <x-nav-link :href="route('hasilpenilaianguru', ['id' => Auth::user()->id])" :active="request()->routeIs('hasilpenilaianguru')">
+                    <x-nav-link :href="route('hasilpenilaianguru')" :active="request()->routeIs('hasilpenilaianguru')">
                         {{ __('Hasil Penilaian Santri') }}
                     </x-nav-link>
                     @endif

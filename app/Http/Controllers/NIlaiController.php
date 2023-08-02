@@ -76,6 +76,16 @@ class NilaiController extends BaseController
 
     public function KasihNilai(Request $request){
         // dd($request);
+
+        $request->validate([
+            'id' => 'required',
+            'absen' => 'required|number',
+            'tugas'=> 'required|number',
+            'bacaan'=> 'required|number',
+            'hafalan' => 'required|number',
+            'rata-rata_jilid' => 'required|number',
+        ]);
+
         $penilaian = Penilaian::where('user_id', $request->id)->where('buku_id', $request->buku_id)->first();
         $penilaian->fill($request->all());
         $penilaian->save();

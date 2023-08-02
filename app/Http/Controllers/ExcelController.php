@@ -19,10 +19,10 @@ use App\Models\Nilai;
 
 class ExcelController extends Controller
 {
-    public function export(){
+    public function export(Request $request){
 
-        $penilaians = Penilaian::where("user_id", 1)->get();
-        $user = User::where("role", 0)->get();
+        $penilaians = Penilaian::where("user_id", $request->id)->get();
+        $user = User::where("role", 0)->where('id', $request->id)->first();
         $kelas = Kelas::all();
         
 
@@ -130,10 +130,10 @@ class ExcelController extends Controller
             $sheet->setCellValue('C'.$index, $nilai->user_id);
             $sheet->getStyle('C'.$index)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
             
-            $sheet->setCellValue('D'.$index, $user[$nilai->user_id-1]->name);
+            $sheet->setCellValue('D'.$index, $user->name);
             $sheet->getStyle('D'.$index)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
 
-            $sheet->setCellValue('E'.$index, $user[$nilai->user_id-1]->gender == "Laki - Laki" ? "L" : "P");
+            $sheet->setCellValue('E'.$index, $user->gender == "Laki - Laki" ? "L" : "P");
             $sheet->getStyle('E'.$index)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
 
             $sheet->setCellValue('F'.$index, $kelas[$nilai->kelas_id]->name_kelas);

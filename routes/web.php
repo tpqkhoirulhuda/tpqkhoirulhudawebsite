@@ -37,7 +37,7 @@ Route::middleware('auth', 'santriVerified')->group(function(){
     Route::post('/post/daftar-guru', [RegisteredUserController::class, 'storeGuruByAdmin'])->name('daftar-guru');
     Route::post('/post/daftar-santri', [RegisteredUserController::class, 'storeSantriByAdmin'])->name('daftar-santri');
 
-    Route::get("/export/excel", [ExcelController::class, 'export'])->name("excel.export");
+    Route::get("/export/excel/{id}", [ExcelController::class, 'export'])->name("excel.export");
 
     Route::middleware('isGuruAdmin')->group(function(){
         Route::get('/tambahsantribaru', [RegisteredUserController::class, 'SantriView'])->name('tambahsantribaru');

@@ -7,10 +7,10 @@
 
   <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <a href="{{route('excel.export')}}"><button class="btn btn-primary mb-4">Cetak Hasil</button></a>
+        <a href="{{route('excel.export', ['id' => $user] )}}"><button class="btn btn-primary mb-4">Cetak Hasil</button></a>
           <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900 dark:text-gray-100 text-center text-4xl">
-              {{ __("Hasil Penilaian ") }} {{ Auth::user()->name }}
+              {{ __("Hasil Penilaian ") }} {{ $user->name }}
               </div>
               <div class="flex flex-col justify-center">
                 <div class="overflow-x-auto flex flex-col justify-center m-6 flex-wrap">

@@ -32,6 +32,7 @@
     const listBox = document.querySelector('.box-list');
     const santri = @json($user);
     const kelas = @json($kelas);
+    console.log(santri);
 
     const getSantri = (filteredSantri) => {
         listBox.innerHTML = filteredSantri.map((e) => {
@@ -42,7 +43,7 @@
                 </div>
 
                 <div class="collapse-content"> 
-                    <p>Kelas: ${e.kelas_id==null ? "Belum ada kelas":kelas[e.kelas_id].nama_kelas}</p>
+                    <p>Kelas: ${e.kelas_id==null ? "Belum ada kelas" : kelas[e.kelas_id - 1].nama_kelas}</p>
                     <p>Jenis Kelamin: ${e.jenis_kelamin}</p>
                     <p>Email: ${e.email}</p>
                     <p>No Telp: ${e.noTelp}</p>
@@ -78,7 +79,7 @@
                                 <h3 class="font-bold text-lg">Cetak Hasil Santri</h3>
                                 <p class="py-4">Apakah kamu yakin mau mencetak hasil penilaian ${e.name} ?</p>
                                 <div class="modal-action">
-                                    <a href="{{ route('excel.export') }}"><button for="cetakhasil ${e.name}" class="btn btn-success btn-outline">Cetak</button></a>
+                                    <a href="/export/excel/${e.id}"><button for="cetakhasil ${e.name}" class="btn btn-success btn-outline">Cetak</button></a>
                                     <label for="cetakhasil ${e.name}" class="btn btn-info btn-outline">Cancel</label>
                                 </div>
                             </div>
