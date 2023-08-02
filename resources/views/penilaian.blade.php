@@ -21,7 +21,7 @@
                       <label class="label">
                         <span class="label-text">Buku Jilid</span>
                       </label>
-                      <select name="buku_id" class="select select-bordered">
+                      <select name="buku_id" required class="select select-bordered">
                         <option disabled selected>Buku Jilid</option>
                         @foreach($buku as $bk)
                           <option value="{{$bk->id}}">{{$bk->jilid_buku}}</option>
@@ -31,7 +31,7 @@
                         <span class="label-text">Nama</span>
                       </label>
                       <div class="relative">
-                        <input  id="searchUser" onchange="searchFunction()" placeholder="nama" class="input input-bordered w-full max-w-xs" />
+                        <input  id="searchUser" onchange="searchFunction()" placeholder="nama" required class="input input-bordered w-full max-w-xs" />
                         <div id="dropDown" class="flex flex-col absolute hidden bg-[#1d232a] rounded border border-zinc-700 w-full p-2">
                         </div>
                       </div>
@@ -39,7 +39,7 @@
                       <label class="label">
                         <span class="label-text">Jenis Kelamin</span>
                       </label>
-                      <select class="select select-bordered">
+                      <select required class="select select-bordered">
                         <option disabled selected>Jenis Kelamin</option>
                         <option>Laki-laki</option>
                         <option>Perempuan</option>
@@ -56,23 +56,23 @@
                       <label class="label">
                         <span class="label-text">Absensi</span>
                       </label>
-                      <input name="absen" type="number" placeholder="absensi" class="input input-bordered w-full max-w-xs" />
+                      <input name="absen" type="number" required placeholder="absensi" class="input input-bordered w-full max-w-xs" />
                       <label class="label">
                         <span class="label-text">Tugas</span>
                       </label>
-                      <input name="tugas" type="number" placeholder="tugas" class="input input-bordered w-full max-w-xs" />
+                      <input name="tugas" type="number" required placeholder="tugas" class="input input-bordered w-full max-w-xs" />
                       <label class="label">
                         <span class="label-text">Bacaan</span>
                       </label>
-                      <input name="bacaan" type="number" placeholder="bacaan" class="input input-bordered w-full max-w-xs" />
+                      <input name="bacaan" type="number" required placeholder="bacaan" class="input input-bordered w-full max-w-xs" />
                       <label class="label">
                         <span class="label-text">Hafalan</span>
                       </label>
-                      <input name="hafalan" type="number" placeholder="hafalan" class="input input-bordered w-full max-w-xs" />
+                      <input name="hafalan" type="number" required placeholder="hafalan" class="input input-bordered w-full max-w-xs" />
                       <label class="label">
                         <span class="label-text">Rata-rata Jilid</span>
                       </label>
-                      <input name="rata-rata_jilid" type="number" placeholder="rata-rata jilid" class="input input-bordered w-full max-w-xs" />
+                      <input name="rata-rata_jilid" type="number" required placeholder="rata-rata jilid" class="input input-bordered w-full max-w-xs" />
                       <button type="submit" class="btn btn-accent mt-3">Submit Nilai</button>
                         @if (session('status') === 'profile-updated')
                           <div class="alert alert-success fixed top-0 left-[50%] w-[50%] translate-x-[-50%]" x-data="{ show: true }"
