@@ -137,7 +137,7 @@
                         <div class="modal-box">
                             <div class="flex flex-col justify-center items-center p-4">
                                 <h3 class="font-bold text-lg">Delete Santri</h3>
-                                <p class="py-4">Apakah kamu yakin mau menghapus data ${e.name}</p>
+                                <p class="py-4">Apakah kamu yakin mau menghapus data ${e.name} ?</p>
                                 <div class="modal-action">
                                      <form method="post" action="{{route('user.delete')}}">
                                         @csrf
