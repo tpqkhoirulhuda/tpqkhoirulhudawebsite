@@ -87,9 +87,13 @@ class NilaiController extends BaseController
         ]);
 
         $penilaian = Penilaian::where('user_id', $request->id)->where('buku_id', $request->buku_id)->first();
+        
+    if($penilaian){
         $penilaian->fill($request->all());
         $penilaian->save();
         return redirect()->back()->with('status', 'profile-updated');
+    }else{
+        return redirect()->back()->with('status', 'no-user');
     }
 
 }
