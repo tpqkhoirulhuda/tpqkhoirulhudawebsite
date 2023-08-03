@@ -13,6 +13,8 @@ use App\Models\Penilaian;
 use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Nilai;
+use App\Models\Buku;
+
 
 
 
@@ -24,8 +26,9 @@ class ExcelController extends Controller
         $penilaians = Penilaian::where("user_id", $request->id)->get();
         $user = User::where("role", 0)->where('id', $request->id)->first();
         $kelas = Kelas::all();
+        $kriteriaNilai = Nilai::first();
+        $buku = Buku::all();
         
-
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $sheet->mergeCells('B1:M1');
@@ -43,11 +46,11 @@ class ExcelController extends Controller
         $styleB2->getFont()->setBold(true);
 
         // Heading
-        $sheet->mergeCells("B4:C4");
-        $sheet->setCellValue('B4', "Kelas");
+        // $sheet->mergeCells("B4:C4");
+        // $sheet->setCellValue('B4', "Kelas");
 
-        $sheet->mergeCells("B5:C5");
-        $sheet->setCellValue('B5', "Mata Pelajaran : ");
+        // $sheet->mergeCells("B5:C5");
+        // $sheet->setCellValue('B5', "Mata Pelajaran : ");
         
         $sheet->mergeCells("B8:B10");
         $sheet->setCellValue('B8', "No.");
@@ -55,7 +58,7 @@ class ExcelController extends Controller
 
 
         $sheet->mergeCells("C8:C10");
-        $sheet->setCellValue('C8', "No.Induk");
+        $sheet->setCellValue('C8', "Mata Pelajaran");
         $sheet->getStyle('C8:C10')->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THICK);
 
         $sheet->mergeCells("D8:D10");
@@ -127,7 +130,7 @@ class ExcelController extends Controller
             $sheet->setCellValue('B'.$index, $number);
             $sheet->getStyle('B'.$index)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
 
-            $sheet->setCellValue('C'.$index, $nilai->user_id);
+            $sheet->setCellValue('C'.$index, $buku[$nilai->buku_id-1]->jilid_buku);
             $sheet->getStyle('C'.$index)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
             
             $sheet->setCellValue('D'.$index, $user->name);
@@ -136,7 +139,7 @@ class ExcelController extends Controller
             $sheet->setCellValue('E'.$index, $user->gender == "Laki - Laki" ? "L" : "P");
             $sheet->getStyle('E'.$index)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
 
-            $sheet->setCellValue('F'.$index, $kelas[$nilai->kelas_id]->name_kelas);
+            $sheet->setCellValue('F'.$index, $kelas[$nilai->kelas_id-1]->nama_kelas);
             $sheet->getStyle('F'.$index)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
 
             $sheet->setCellValue('G'.$index, $nilai->absen);
@@ -150,8 +153,9 @@ class ExcelController extends Controller
 
             $sheet->setCellValue('J'.$index, $nilai->hafalan);
             $sheet->getStyle('J'.$index)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
-
-
+            
+            $rata = ($nilai->absen*$kriteriaNilai->absen) +( $nilai->tugas*$kriteriaNilai->tugas) + ($nilai->bacaan*$kriteriaNilai->bacaan) + ($nilai->hafalan*$kriteriaNilai->hafalan);
+            $sheet->setCellValue('K'.$index, $rata);
             $sheet->getStyle('K'.$index)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
 
 
@@ -162,7 +166,7 @@ class ExcelController extends Controller
             $sheet->getStyle('M'.$index)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
 
 
-            $sheet->setCellValue('N'.$index, $nilai->{"rata-rata_jilid"} >= 75 ? "LULUS" : "TIDAK LULUS");
+            $sheet->setCellValue('N'.$index, ($nilai->{"rata-rata_jilid"}+$rata)/2 >= 75 ? "LULUS" : "TIDAK LULUS");
             $sheet->getStyle('N'.$index)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
 
             $index++;
@@ -194,8 +198,8 @@ class ExcelController extends Controller
         }
 
         //Kriteri Penilaian
-        $nilai = Nilai::first();
-        // dd($nilai->bacaan);
+        
+        // dd($kriteriaNilai->bacaan);
         $sheet->setCellValue("P9", "KKM");
         $sheet->getStyle('P9')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setARGB('808080');
 
@@ -210,25 +214,25 @@ class ExcelController extends Controller
         $sheet->setCellValue("P11", "Absensi");
         $sheet->getStyle("P11")->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
 
-        $sheet->setCellValue("Q11", $nilai->absen."%");
+        $sheet->setCellValue("Q11", $kriteriaNilai->absen."%");
         $sheet->getStyle("Q11")->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
 
         $sheet->setCellValue("P12", "Tugas");
         $sheet->getStyle("P12")->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
 
-        $sheet->setCellValue("Q12", $nilai->tugas."%");
+        $sheet->setCellValue("Q12", $kriteriaNilai->tugas."%");
         $sheet->getStyle("Q12")->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
 
         $sheet->setCellValue("P13", "Bacaan");
         $sheet->getStyle("P13")->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
 
-        $sheet->setCellValue("Q13", $nilai->bacaan."%");
+        $sheet->setCellValue("Q13", $kriteriaNilai->bacaan."%");
         $sheet->getStyle("Q13")->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
 
         $sheet->setCellValue("P14", "Hafalan");
         $sheet->getStyle("P14")->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
 
-        $sheet->setCellValue("Q14", $nilai->hafalan."%");
+        $sheet->setCellValue("Q14", $kriteriaNilai->hafalan."%");
         $sheet->getStyle("Q14")->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
 
         $sheet->setCellValue("P15", "Total");

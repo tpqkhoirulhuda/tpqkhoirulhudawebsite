@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('penilaian', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('buku_id')->constrained('buku');
             $table->foreignId('kelas_id')->constrained('kelas');
             $table->timestamps();
