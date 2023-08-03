@@ -95,5 +95,5 @@ class NilaiController extends BaseController
     }else{
         return redirect()->back()->with('status', 'no-user');
     }
-
+    }
 }

@@ -91,7 +91,6 @@
                               <p>{{ __('Santri yang anda masukkan tidak terdaftar') }}</p>
                           </div>
                         @endif
-                        @endif
                     </div>
                   </form>
                 </div>
