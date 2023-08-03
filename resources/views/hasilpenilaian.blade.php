@@ -45,8 +45,12 @@
                           <td>{{$dataNilai->hafalan}}</td>
                           <td>{{($dataNilai->absen*($nilai->absen / 100)) + ($dataNilai->tugas*($nilai->tugas/100)) + ($dataNilai->bacaan*($nilai->bacaan/100)) + ($dataNilai->hafalan*($nilai->hafalan/100))}}</td>
                           <td>{{ $dataNilai->{'rata-rata_jilid'} }}</td>
-                          <td></td>
-                          <td></td>
+                          <td>{{((($dataNilai->absen*($nilai->absen / 100)) + ($dataNilai->tugas*($nilai->tugas/100)) + ($dataNilai->bacaan*($nilai->bacaan/100)) + ($dataNilai->hafalan*($nilai->hafalan/100))) + $dataNilai->{'rata-rata_jilid'})/2 }}</td>
+                          @if(((($dataNilai->absen*($nilai->absen / 100)) + ($dataNilai->tugas*($nilai->tugas/100)) + ($dataNilai->bacaan*($nilai->bacaan/100)) + ($dataNilai->hafalan*($nilai->hafalan/100))) + $dataNilai->{'rata-rata_jilid'})/2 >= 75 )
+                            <td>Lulus</td>
+                          @else 
+                            <td>Tidak Lulus</td>
+                          @endif
                           </tr>
                         @endforeach
                     </tbody>

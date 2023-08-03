@@ -154,7 +154,7 @@ class ExcelController extends Controller
             $sheet->setCellValue('J'.$index, $nilai->hafalan);
             $sheet->getStyle('J'.$index)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
             
-            $rata = ($nilai->absen*$kriteriaNilai->absen) +( $nilai->tugas*$kriteriaNilai->tugas) + ($nilai->bacaan*$kriteriaNilai->bacaan) + ($nilai->hafalan*$kriteriaNilai->hafalan);
+            $rata = ($nilai->absen*($kriteriaNilai->absen/100)) +( $nilai->tugas*($kriteriaNilai->tugas/100)) + ($nilai->bacaan*($kriteriaNilai->bacaan/100)) + ($nilai->hafalan*($kriteriaNilai->hafalan/100));
             $sheet->setCellValue('K'.$index, $rata);
             $sheet->getStyle('K'.$index)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
 
@@ -162,7 +162,7 @@ class ExcelController extends Controller
             $sheet->setCellValue('L'.$index, $nilai->{"rata-rata_jilid"});
             $sheet->getStyle('L'.$index)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
 
-
+            $sheet->setCellValue('M'.$index, ($nilai->{"rata-rata_jilid"}+$rata)/2);
             $sheet->getStyle('M'.$index)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
 
 
