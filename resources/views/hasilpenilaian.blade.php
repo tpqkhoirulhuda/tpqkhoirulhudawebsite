@@ -38,7 +38,7 @@
                           <th>1</th>
                           <td>{{$user->name}}</td>
                           <td>{{$user->jenis_kelamin == "Laki-laki" ? "L": "P"}}</td>
-                          <td>{{$kelas[$dataNilai->kelas_id]->nama_kelas}}</td>
+                          <td>{{$kelas[$dataNilai->kelas_id-1]->nama_kelas}}</td>
                           <td>{{$dataNilai->absen}}</td>
                           <td>{{$dataNilai->tugas}}</td>
                           <td>{{$dataNilai->bacaan}}</td>
