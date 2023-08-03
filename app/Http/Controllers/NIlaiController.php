@@ -79,11 +79,11 @@ class NilaiController extends BaseController
 
         $request->validate([
             'id' => 'required',
-            'absen' => 'required|number',
-            'tugas'=> 'required|number',
-            'bacaan'=> 'required|number',
-            'hafalan' => 'required|number',
-            'rata-rata_jilid' => 'required|number',
+            'absen' => 'required|numeric',
+            'tugas'=> 'required|numeric',
+            'bacaan'=> 'required|numeric',
+            'hafalan' => 'required|numeric',
+            'rata-rata_jilid' => 'required|numeric',
         ]);
 
         $penilaian = Penilaian::where('user_id', $request->id)->where('buku_id', $request->buku_id)->first();

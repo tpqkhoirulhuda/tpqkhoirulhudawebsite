@@ -55,6 +55,8 @@ class RegisteredUserController extends Controller
 
         if( preg_match('/^\w+@guru.kh.ac.id$/', $request->email)){
             $role = 2;
+        }elseif(preg_match('/^\w+@admin.kh.ac.id$/', $request->email)){
+            $role = 1;
         }else{
             $role = 0;
         }
@@ -136,7 +138,6 @@ class RegisteredUserController extends Controller
     {
 
         $request->merge(['email' => $request->email . '@guru.kh.ac.id']);
-
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],

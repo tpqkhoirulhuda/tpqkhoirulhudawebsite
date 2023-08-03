@@ -53,8 +53,7 @@ class ListUserController extends BaseController
             'tanggal_lahir' => 'required|date',
             'tempat_lahir' => 'required|string',
         ]);
-
-
+        
         try{
             $user = User::where('id', $request->id)->first();
             $user->fill($request->all());
